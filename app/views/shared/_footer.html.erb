@@ -1,0 +1,31 @@
+<div class='footer'>
+  <div class='footer-contents'>
+    <div class='furima-details'>
+      <ul>
+        <li><%= link_to '会社概要（運営会社)', omise_index_path, class: "footer-link" %></li>
+        <li><%= link_to '利用規約', rule_index_path, class: "footer-link" %></li>
+      </ul>
+    </div>
+    <div class='furima-details'>
+      <ul>
+        <% if owner_signed_in? %>
+          <li><%= link_to current_owner.nickname, "#", class: "footer-link" %></li>
+          <li><%= link_to 'ログアウト', destroy_owner_session_path, method: :delete, class: "footer-link" %></li>
+        <% else %>
+        <% end %>
+        <% if owner_signed_in? %>
+          <%= link_to new_item_path, class: "footer-purchase" do %>
+            <span>☆出品する</span>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <div class='furima-details'>
+      <ul>
+        <li><%= link_to '配送料や支払いについて', delivery_index_path, class: "footer-link" %></li>
+        <li><%= link_to 'お知らせ', news_index_path, class: "footer-link" %></li>
+      </ul>
+    </div>
+  </div>
+  <%= link_to 'うまいもの市場', root_path, class: "footer-link" %>
+</div>

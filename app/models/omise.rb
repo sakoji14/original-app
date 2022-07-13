@@ -1,0 +1,2 @@
+class Omise < ApplicationRecord
+end

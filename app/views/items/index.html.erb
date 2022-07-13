@@ -1,0 +1,103 @@
+<%= render "shared/header" %>
+
+<div class='main'>
+
+  <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
+  <div class='title-contents'>
+       
+  </div>
+  <%# /画面上部の「人生を変えるフリマアプリ」帯部分  %>
+
+  <%# FURIMAが選ばれる3つの理由部分 %>
+  <div class='select-reason-contents'>
+    <h2 class='title'>
+      うまいもん市場が選ばれる2つの理由
+    </h2>
+    <ul class='reason-lists'>
+      <li class='list'>
+        <%= image_tag "11111.png", class:"list-pict" %>
+        <span class='reason-list-number'>1</span>
+        <h3 class='reason-list-text'>
+          <span class='reason-list-blue-text'>簡単登録</span>
+          ですぐに購入
+        </h3>
+        <p class='reason-list-description'>
+          最短3分の無料会員登録ですぐにお買い物ができます。
+        </p>
+      </li>
+      <li class='list'>
+        <%= image_tag "11112.jpg", class:"list-pict" %>
+        <span class='reason-list-number'>2</span>
+        <h3 class='reason-list-text'>
+          <span class='reason-list-blue-text'>美味しい</span>
+          へのこだわり
+        </h3>
+        <p class='reason-list-description'>
+          個性あふれる生産者さんの製品を気軽に購入することが出来ます！
+        </p>
+      </li>
+    </ul>
+  </div>
+  <%# /FURIMAが選ばれる3つの理由部分 %>
+
+  <%# /FURIMAの特徴 %>
+
+  <%# 商品一覧 %>
+  <div class='item-contents'>
+    <h2 class='title'>おすすめ商品</h2>
+    <div class="subtitle" >
+      〜新しく出品されたオススメ商品！要CHECKです♪〜
+    </div>
+    <ul class='item-lists'>
+
+  
+      <% @items.each do |item| %>
+        <li class='list'>
+          <%= link_to item_path(item.id) do %>
+            <div class='item-img-content'>
+              <%= image_tag item.image, class: 'item-img' if item.image.attached? %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.item_name %>
+              </h3>
+              <h3 class='item-comment'>
+                <%= item.comment %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.fee %>円</span>
+              </div>
+              <div class='item-category'>
+                <span>カテゴリー（<%= item.category.name %>）</span>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    
+      <% if @items.length == 0 %>
+        <li class='list'>
+          <%= link_to '#' do %>
+          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                商品を出品してね！
+              </h3>
+              <div class='item-price'>
+                <span>99999999円<br>(税込み)</span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+
+    </ul>
+  </div>
+  <%# /商品一覧 %>
+</div>
+
+<%= render "shared/footer" %>

@@ -1,0 +1,64 @@
+<h2>法人用ログイン</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "owners/shared/error_messages", resource: resource %>
+
+
+  <div class="form-field">
+    <div class='form-text-wrap'>
+      <label class="form-text">法人名(全角)</label>
+      <span class="indispensable">※必須</span>
+    </div>
+      <%= f.text_field :corporation, id:"first-name", placeholder:"例) 陸太郎" %>
+  </div>
+
+  <div class="field">
+    <div class='form-text-wrap'>
+      <label class="form-text">メールアドレス</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="form-field">
+    <div class='form-text-wrap'>
+      <label class="form-text">パスワード</label>
+      <span class="indispensable">必須</span>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <% end %><br />
+    </div>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <div class='form-text-wrap'>
+      <label class="form-text">パスワード確認</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="form-field">
+    <div class='form-text-wrap'>
+      <label class="form-text">電話番号</label>
+      <span class="indispensable">※必須</span>
+    </div>
+    <%= f.text_field :tell, class: "form-phone", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
+  </div>
+
+  <div class="form-field">
+    <div class='form-text-wrap'>
+      <label class="form-text">ニックネーム</label>
+      <span class="indispensable">※必須</span>
+    </div>
+    <%= f.text_field :nickname, id:"first-name", placeholder:"例) 陸太郎" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+  <%= link_to "ホームに戻る", root_path %>
+<% end %>
+
+<%= render "owners/shared/links" %>

@@ -1,0 +1,54 @@
+<%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
+  <div class="search-main">
+    <div class="search-field">
+      <%= f.label :item_name, '商品名', class: "text-name" %>
+      <br>
+      <%= f.text_field :item_name, class:"items-text", placeholder: '商品名', value: params[:q]&.dig(:item_name) %>
+      <%= f.label :owner_nickname_cont, '出品者名', class: "text-name" %>
+      <br>
+      <%= f.text_field :owner_nickname_cont, class:"items-text", placeholder: '出品者名' %>
+      <%= f.label :category_id_in, 'カテゴリーを選ぶ', class: "text-name" %>
+      <br>
+      <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}, {class:"category-box"}) %>
+      <br>
+      <%= f.label :fee_gteq, '価格', class:"price", class: "text-name" %>
+      <br>
+      <%= f.number_field :fee_gteq, class:"items-text" %> 円以上
+      <br>
+      <%= f.number_field :fee_lteq, class:"items-text" %> 円以下
+      <br>
+      <%= f.submit '検索', class: "search-link" %>
+    </div>
+    
+    <div class= "item-hit">
+      <div class='hit'>件がヒットしました</div>
+    <ul class="item-lists">
+      <br>
+      <% @items.each do |item| %>
+        <li class='list'>
+          <%= link_to item_path(item.id) do %> 
+            <div class='item-img-content'>
+              <%= image_tag item.image, class: 'item-img' if item.image.attached? %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.item_name %>
+              </h3>
+              <h3 class='item-comment'>
+                <%= item.comment %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.fee %>円</span>
+              </div>
+              <div class='item-category'>
+                <span>カテゴリー（<%= item.category.name %>）</span>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    </div>
+  </div>
+<% end %> 
+
