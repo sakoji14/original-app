@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :owner
   has_one   :purchase
   has_many :favorites
+  has_many :cart_items
 
   has_one_attached :image
 

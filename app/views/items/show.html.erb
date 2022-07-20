@@ -67,6 +67,9 @@
       <div class="count-btn">
         <p><%=link_to "お気に入り一覧", item_favorites_path(@item.id) %></p>
       </div>
+      <div class="count-btn">
+        <p><%=link_to "カートに入れる", cart_path(@item.id) %></p>
+      </div>
     </div>
   </div>
   <%# /商品の概要 %>

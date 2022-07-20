@@ -6,9 +6,15 @@ class User < ApplicationRecord
   
   #has_many :purchases
   has_many :favorites
+  has_many :items
+  has_one :cart, dependent: :destroy
 
   def favorite_find(item_id)
     favorites.where(item_id: item_id).exists?
+  end
+
+  def prepare_cart
+    cart || create_cart
   end
 
   validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
