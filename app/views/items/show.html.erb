@@ -67,40 +67,19 @@
       <div class="count-btn">
         <p><%=link_to "お気に入り一覧", item_favorites_path(@item.id) %></p>
       </div>
-      <div class="count-btn">
-        <p><%=link_to "カートに入れる", cart_path(@item.id) %></p>
+      <div class="report-btn">
+          <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
+          <p><%=link_to "カートに入れる", item_carts_path(@item.id), method: :post %></p>
       </div>
+        
     </div>
   </div>
   <%# /商品の概要 %>
 
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <script>
-      $('#star').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        scoreName: 'post[rate]',
-        half: true,
-      });
-      </script>  
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-      
-    </form>
-  </div>
-  <div class="links">
-  </div>
+    
   <%= link_to "ホームに戻る", root_path,  class:"another-item"%>
+  <p><%=link_to "カートを確認する", item_carts_path(@item.id), class:"another-item" %></p>
 </div>
 
 <%= render "shared/footer" %>

@@ -1,0 +1,38 @@
+<%= render "shared/header" %>
+
+  <div class= "item-hit">
+      <%= @cart_list.count %>
+      <div class='hit'>
+        件がヒットしました
+      </div>
+    <ul class="item-lists">
+      <br>
+      <% if @cart_list.present? %>
+        <% @cart_list.each do |item| %>
+          <li class='list'>
+            <%= link_to item_path(item.id) do %> 
+              <div class='item-img-content'>
+                <%= image_tag item.image, class: 'item-img' if item.image.attached? %>
+              </div>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  <%= item.item_name %>
+                </h3>
+                <h3 class='item-comment'>
+                  <%= item.comment %>
+                </h3>
+                <div class='item-price'>
+                  <span><%= item.fee %>円</span>
+                </div>
+                <div class='item-category'>
+                  <span>カテゴリー（<%= item.category.name %>）</span>
+                </div>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+<%= render "shared/footer" %>
