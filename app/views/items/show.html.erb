@@ -4,9 +4,14 @@
     <h2 class="name">
       <%= @item.item_name %>
     </h2>
-    <div class="item-img-content">
-      <%= image_tag @item.image ,class:"item-box-img" %>
-    </div>
+    <div class="slider-for">
+      <p><%= image_tag @item.images[0]  %></p>
+    </div> 
+      <div class="slider-nav" >
+        <% @item.images[1..-1].each do |image| %>
+            <p><%= image_tag image %></p>
+        <%end%>
+      </div>        
     <div class="item-price-box">
       <span class="item-price">
         ¥<%=  @item.fee %>
@@ -69,7 +74,7 @@
       </div>
       <div class="report-btn">
           <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
-          <p><%=link_to "カートに入れる", item_carts_path(@item.id), method: :post %></p>
+          <p><%=link_to "カートに入れる", item_add_to_carts_path(@item.id), method: :post %></p>
       </div>
         
     </div>
@@ -79,7 +84,9 @@
   <div class="comment-box">
     
   <%= link_to "ホームに戻る", root_path,  class:"another-item"%>
-  <p><%=link_to "カートを確認する", item_carts_path(@item.id), class:"another-item" %></p>
+  <p><%#=link_to "カートを確認する", carts_path(@item.id), class:"another-item" %></p>
 </div>
+
+
 
 <%= render "shared/footer" %>

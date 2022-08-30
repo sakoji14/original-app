@@ -1,14 +1,17 @@
 <%= render "shared/header" %>
 
   <div class= "item-hit">
-      <%= @cart_list.count %>
+      <%= @item.count %>
       <div class='hit'>
         件がヒットしました
       </div>
+      <div>
+        <p class='text-right mt-3'>合計金額 <%= @item.sum(:fee) %>円</p>
+      </div>
     <ul class="item-lists">
       <br>
-      <% if @cart_list.present? %>
-        <% @cart_list.each do |item| %>
+      <% if @item.present? %>
+        <% @item.each do |item| %>
           <li class='list'>
             <%= link_to item_path(item.id) do %> 
               <div class='item-img-content'>
@@ -22,7 +25,7 @@
                   <%= item.comment %>
                 </h3>
                 <div class='item-price'>
-                  <span><%= item.fee %>円</span>
+                  <span><%= item.fee %>円<%= link_to '×', item_delete_in_carts_path(item), method: :post, data: {confirm: '削除してもいいですか？'} %></a></span>
                 </div>
                 <div class='item-category'>
                   <span>カテゴリー（<%= item.category.name %>）</span>

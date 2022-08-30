@@ -1,0 +1,28 @@
+<div class='search-bar-contents'>
+    <%# link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
+    <%= search_form_for Item.ransack(params[:q]), url: search_items_path, html: {class: "search-form"} do |f| %>
+      <div class="search-field">
+        <%= f.label :item_name, '商品名', class: "search-name" %>
+        <br>
+        <%= f.text_field :item_name, placeholder: '商品名', value: params[:q]&.dig(:item_name) %>
+      </div>
+      <div class="search-field">
+        <%= f.label :owner_nickname_cont, '出品者名', class: "search-name" %>
+        <br>
+        <%= f.text_field :owner_nickname_cont, placeholder: '出品者名', class: "search-name" %>
+      </div>
+      <div class="search-field">
+        <%= f.label :category_id_in, 'カテゴリーを選ぶ', class: "search-name" %>
+        <br>
+        <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}, {class:"category-box"}) %>
+      </div>
+      <div class="search-field">
+        <%= f.label :fee_gteq, '価格', class: "search-name"%>
+        <br>
+        <%= f.number_field :fee_gteq %> 円以上
+        <br>
+        <%= f.number_field :fee_lteq %> 円以下
+      </div>
+        <%= f.submit '検索', class: "search-link" %>
+    <% end %>
+  </div>

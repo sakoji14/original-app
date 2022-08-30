@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+   
+    @all_ranks = Item.find(Favorite.group(:item_id).order('count(item_id) desc').limit(6).pluck(:item_id))
   end
 
   def new
@@ -59,7 +61,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:item_name, :contents, :category_id, :delivery_method_id, :shipping_date_id, :comment, :fee, :image).merge(owner_id: current_owner.id)
+    params.require(:item).permit(:item_name, :contents, :category_id, :delivery_method_id, :shipping_date_id, :comment, :fee, {images: []}).merge(owner_id: current_owner.id)
   end
 
   def set_item

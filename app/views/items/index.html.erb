@@ -3,101 +3,226 @@
 <div class='main'>
 
   <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
-  <div class='title-contents'>
-       
   </div>
   <%# /画面上部の「人生を変えるフリマアプリ」帯部分  %>
 
   <%# FURIMAが選ばれる3つの理由部分 %>
-  <div class='select-reason-contents'>
-    <h2 class='title'>
-      うまいもん市場が選ばれる2つの理由
-    </h2>
-    <ul class='reason-lists'>
-      <li class='list'>
-        <%= image_tag "11111.png", class:"list-pict" %>
-        <span class='reason-list-number'>1</span>
-        <h3 class='reason-list-text'>
-          <span class='reason-list-blue-text'>簡単登録</span>
-          ですぐに購入
-        </h3>
-        <p class='reason-list-description'>
-          最短3分の無料会員登録ですぐにお買い物ができます。
-        </p>
-      </li>
-      <li class='list'>
-        <%= image_tag "11112.jpg", class:"list-pict" %>
-        <span class='reason-list-number'>2</span>
-        <h3 class='reason-list-text'>
-          <span class='reason-list-blue-text'>美味しい</span>
-          へのこだわり
-        </h3>
-        <p class='reason-list-description'>
-          個性あふれる生産者さんの製品を気軽に購入することが出来ます！
-        </p>
-      </li>
-    </ul>
-  </div>
+  
   <%# /FURIMAが選ばれる3つの理由部分 %>
+  <main>
+  <div class="wrap"><%= image_tag "mail_test.png" %>
+    <div class="center-mode">
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+    </div>
+  </div>
+</main>
+<!--section id="trend">
+  <div class="wrap">
+   <div class="inner"> <div class="item_box">
+      <div class="contents_title"><h4>トレンドワード</h4></div>
+      <div class="contents_subtitle"><span>PICK UP</span>皆が注目している食材から探す</div>
+      <ul class="trend_list">
+        <li><a href="">
+          <div class="tremd_img"><img src="../images/11111.png" alt=""></div>
+          <div class="trend_text">
+            <p>シャインマスカット</p>
+          </div>
+          </a></li>
+        <li><a href="">
+          <div class="tremd_img"><img src="../images/11111.png" alt=""></div>
+          <div class="trend_text">
+            <p>シャインマスカット</p>
+          </div>
+          </a></li>
+        <li><a href="">
+          <div class="tremd_img"><img src="../images/11111.png" alt=""></div>
+          <div class="trend_text">
+            <p>シャインマスカット</p>
+          </div>
+          </a></li>
+      </ul>
+      <ul class="trend_tag">
+        <li><a href="">ブルーベリー</a></li>
+        <li><a href="">野菜セット</a></li>
+        <li><a href="">牡蠣</a></li>
+        <li><a href="">ヤングコーン</a></li>
+      </ul>
+    </div>
+  </div></div>
+</section-->
+<div id="contents_area"> 
+  <!--div id="contents_area"> 
+  <<section id="reason">
+  <div class="wrap">
+    <div class="inner">
+      <div class="reason_title">
+        <h2>うまいもん市場が選ばれる<span>3つの理由</span></h2>
+      </div>
+      <ul class="reason_list">
+        <li>
+          <div class="reason_number">1</div>
+          <div class="reason_img"><img src="../images/11111.png" alt=""></div>
+          <div class="reason_text">
+            <h3>美味しさのこだわり</h3>
+            <p>テキストテキストテキストテキストテキスト</p>
+          </div>
+        </li>
+        <li>
+          <div class="reason_number">2</div>
+          <div class="reason_img"><img src="../images/11111.png" alt=""></div>
+          <div class="reason_text">
+            <h3>生産者とのつながり</h3>
+            <p>テキストテキストテキストテキストテキスト</p>
+          </div>
+        </li>
+        <li>
+          <div class="reason_number">3</div>
+          <div class="reason_img"><img src="../images/11111.png" alt=""></div>
+          <div class="reason_text">
+            <h3>簡単登録ですぐにお買い物</h3>
+            <p>新規登録からお買い物完了まで最短3分で可能。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
+</section>-->
+<div class="left_box">  <section id="search_category">
+    <div class="wrap">
+      <div class="inner">
+        <div class="category_list_title spnone"><li>カテゴリーから探す</li></div>
+          <a href="http://localhost:3000/items/search">全ての商品</a>
+          <ul class="category_list">
+          <li><%= search_form_for Item.ransack(params[:q]), url: search_items_path do |f| %></li>
+             <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}, {class:"category-box"}) %>
+            
+            <%= f.submit '検索', class: "search-link" %>
+
+          <% end %>
+          <li class="pcnone"><a href="">カテゴリーから探す&nbsp;＞</a></li>
+          </ul>
+      </div>
+    </div>
+  </section></div>
+<div class="right_box"> 
+    <section id="popular">
+    <div class="wrap">
+      <div class="item_box">
+        <div class="contents_title"><h3>＊人気商品＊</h3></div>
+        <div class="contents_subtitle">まずはこちらをチェック！オススメの食材！</div>
+        <ul class="contents_item_list">
+          <% @all_ranks.each do |item| %>
+              <li class='seller_box'>
+                <%= link_to item_path(item.id) do %>
+                  <div class='item-img-content'>
+                    <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %>
+                  </div>
+                  <div class='item-info'>
+                    <h3 class='item-name'>
+                      <%= item.item_name %>
+                    </h3>
+                    <h3 class='item-comment'>
+                      <%= item.comment %>
+                    </h3>
+                    <div class='contents_price'>
+                      <span><%= item.fee %>円</span>
+                    </div>
+                    <div class='item-category'>
+                      <span>カテゴリー（<%= item.category.name %>）</span>
+                    </div>
+
+                  </div>
+                <% end %>
+            </li>
+          <% end %>
+        </ul>
+        <div class="more"><%= link_to "商品一覧 ＞", search_items_path %></div>
+      </div>
+    </div>
+  </section>
+  <section id="recom">
+    <div class="wrap">
+      <div class="item_box">
+        <div class="contents_title"><h3>本日のおすすめ</h3></div>
+        <div class="contents_subtitle"><span>PICK UP</span>昨日の売れ筋商品はこちら</div>
+        <ul class="contents_item_list">
+          <% @items.each do |item| %>
+              <li class='seller_box'>
+                <%= link_to item_path(item.id) do %>
+                  <div class='item-img-content'>
+                    <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %>
+                  </div>
+                  <div class='item-info'>
+                    <h3 class='item-name'>
+                      <%= item.item_name %>
+                    </h3>
+                    <h3 class='item-comment'>
+                      <%= item.comment %>
+                    </h3>
+                    <div class='contents_price'>
+                      <span><%= item.fee %>円</span>
+                    </div>
+                    <div class='item-category'>
+                      <span>カテゴリー（<%= item.category.name %>）</span>
+                    </div>
+                  </div>
+                <% end %>
+            </li>
+          <% end %>
+        </ul>
+        <div class="more"><%= link_to "商品一覧 ＞", search_items_path %></div>
+      </div>
+    </div>
+  </section>
+  <section id="new_seller">
+    <div class="wrap">
+      <div class="item_box">
+        <div class="contents_title"><h3>新規出品</h3></div>
+        <div class="contents_subtitle"><span>NEW</span>期間限定のセット商品やお得商品が盛りだくさん！</div>
+        <ul class="contents_item_list">
+          <% @items.each do |item| %>
+              <li class='seller_box'>
+                <%= link_to item_path(item.id) do %>
+                  <div class='item-img-content'>
+                    <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %>
+                  </div>
+                  <div class='item-info'>
+                    <h3 class='item-name'>
+                      <%= item.item_name %>
+                    </h3>
+                    <h3 class='item-comment'>
+                      <%= item.comment %>
+                    </h3>
+                    <div class='contents_price'>
+                      <span><%= item.fee %>円</span>
+                    </div>
+                    <div class='item-category'>
+                      <span>カテゴリー（<%= item.category.name %>）</span>
+                    </div>
+                  </div>
+                <% end %>
+            </li>
+          <% end %>
+        
+        </ul>
+        <div class="more"><%= link_to "商品一覧 ＞", search_items_path %></div>
+      </div>
+    </div>
+  </section>
+  
   <%# /FURIMAの特徴 %>
 
   <%# 商品一覧 %>
-  <div class='item-contents'>
-    <h2 class='title'>おすすめ商品</h2>
-    <div class="subtitle" >
-      〜新しく出品されたオススメ商品！要CHECKです♪〜
-    </div>
-    <ul class='item-lists'>
-
   
-      <% @items.each do |item| %>
-        <li class='list'>
-          <%= link_to item_path(item.id) do %>
-            <div class='item-img-content'>
-              <%= image_tag item.image, class: 'item-img' if item.image.attached? %>
-            </div>
-            <div class='item-info'>
-              <h3 class='item-name'>
-                <%= item.item_name %>
-              </h3>
-              <h3 class='item-comment'>
-                <%= item.comment %>
-              </h3>
-              <div class='item-price'>
-                <span><%= item.fee %>円</span>
-              </div>
-              <div class='item-category'>
-                <span>カテゴリー（<%= item.category.name %>）</span>
-              </div>
-            </div>
-          <% end %>
-        </li>
-      <% end %>
-    
-      <% if @items.length == 0 %>
-        <li class='list'>
-          <%= link_to '#' do %>
-          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
-            <div class='item-info'>
-              <h3 class='item-name'>
-                商品を出品してね！
-              </h3>
-              <div class='item-price'>
-                <span>99999999円<br>(税込み)</span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class:"star-icon" %>
-                  <span class='star-count'>0</span>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </li>
-      <% end %>
-
-    </ul>
-  </div>
   <%# /商品一覧 %>
 </div>
 
+
+</div>
 <%= render "shared/footer" %>

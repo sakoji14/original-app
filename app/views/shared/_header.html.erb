@@ -1,45 +1,54 @@
 <%# CSS・・・assets/stylesheets/shared/header.css %>
 <header class='top-page-header'>
-  <div class='search-bar-contents'>
-    <%# link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
-    <%= search_form_for Item.ransack(params[:q]), url: search_items_path, html: {class: "search-form"} do |f| %>
-      <div class="search-field">
-        <%= f.label :item_name, '商品名', class: "search-name" %>
-        <br>
-        <%= f.text_field :item_name, placeholder: '商品名', value: params[:q]&.dig(:item_name) %>
+  
+  
+  <header>
+  <div class="wrap">
+    <div class="top_fix">
+      <div class="top_flex">
+        <div class="sp_icon pcnone">
+          <div class="cart_icon"><%= image_tag "icon_cart.png" %></div>
+          <div class="hamburger-menu">
+            <input type="checkbox" id="menu-btn-check">
+            <label for="menu-btn-check" class="menu-btn"><span></span></label>
+            <!--ここからメニュー-->
+            <div class="menu-content">
+              <ul>
+                <li> <a href="#">メニューリンク1</a> </li>
+                <li> <a href="#">メニューリンク2</a> </li>
+                <li> <a href="#">メニューリンク3</a> </li>
+                <li> <a href="#">ログアウト</a> </li>
+              </ul>
+            </div>
+            <!--ここまでメニュー--> 
+          </div>
+        </div>
       </div>
-      <div class="search-field">
-        <%= f.label :owner_nickname_cont, '出品者名', class: "search-name" %>
-        <br>
-        <%= f.text_field :owner_nickname_cont, placeholder: '出品者名', class: "search-name" %>
-      </div>
-      <div class="search-field">
-        <%= f.label :category_id_in, 'カテゴリーを選ぶ', class: "search-name" %>
-        <br>
-        <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}, {class:"category-box"}) %>
-      </div>
-      <div class="search-field">
-        <%= f.label :fee_gteq, '価格', class: "search-name"%>
-        <br>
-        <%= f.number_field :fee_gteq %> 円以上
-        <br>
-        <%= f.number_field :fee_lteq %> 円以下
-      </div>
-        <%= f.submit '検索', class: "search-link" %>
-    <% end %>
+       <%= search_form_for Item.ransack(params[:q]), url: search_items_path, html: {class: "p10"} do |f| %>
+          <div class="p10">
+            
+            <%= f.text_field :item_name, placeholder: '商品名', value: params[:q]&.dig(:item_name), class: "search_form p10" %>
+          </div>
+          
+        <% end %>
+      
+      <nav class="spnone">
+        <ul class="nav_list">
+          <% if user_signed_in? %>
+            <li><%= image_tag "icon_human.png" %><%= link_to current_user.first_name, "#" %></li>
+            <li><%= image_tag "icon_beginner.png" %><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= image_tag "icon_human.png" %><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= image_tag "icon_beginner.png" %><%= link_to 'ログイン', new_user_session_path %></li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li><%= image_tag "icon_cart.png" %><%=link_to "お気に入り一覧", item_favorites_path(current_user) %></li>
+          <% else %>
+            <li><%= image_tag "icon_cart.png" %><%=link_to "お気に入り一覧", root_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
   </div>
-  <div class='nav'>
-    <ul class='lists-left'>
-    </ul>
-    <ul class='lists-right'>
-      <% if user_signed_in? %>
-        <li><%= link_to current_user.first_name, "#", class: "owner-nickname" %></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
-      <% else %>
-        <div class='toroku'>会員登録はこちらから→</div>
-        <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
-        <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
-      <% end %>
-    </ul>
-  </div>
+</header>
 </header>
