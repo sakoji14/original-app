@@ -1,11 +1,11 @@
 <%# CSS・・・assets/stylesheets/shared/header.css %>
-<header class='top-page-header'>
   
   
-  <header>
+<header>
   <div class="wrap">
     <div class="top_fix">
       <div class="top_flex">
+        <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
         <div class="sp_icon pcnone">
           <div class="cart_icon"><%= image_tag "icon_cart.png" %></div>
           <div class="hamburger-menu">
@@ -48,7 +48,22 @@
           <% end %>
         </ul>
       </nav>
+      <nav class="pcnone" id="hidden">
+        <ul class="nav_list">
+          <% if user_signed_in? %>
+            <li><%= image_tag "icon_human.png" %><%= link_to current_user.first_name, "#" %></li>
+            <li><%= image_tag "icon_beginner.png" %><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= image_tag "icon_human.png" %><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= image_tag "icon_beginner.png" %><%= link_to 'ログイン', new_user_session_path %></li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li><%= image_tag "icon_cart.png" %><%=link_to "お気に入り一覧", item_favorites_path(current_user) %></li>
+          <% else %>
+            <li><%= image_tag "icon_cart.png" %><%=link_to "お気に入り一覧", root_path %></li>
+          <% end %>
+        </ul>
+      </nav>
     </div>
   </div>
-</header>
 </header>

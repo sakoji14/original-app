@@ -1,15 +1,13 @@
 <%= render "shared/header" %>
 
-<div class='main'>
 
   <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
-  </div>
   <%# /画面上部の「人生を変えるフリマアプリ」帯部分  %>
 
   <%# FURIMAが選ばれる3つの理由部分 %>
   
   <%# /FURIMAが選ばれる3つの理由部分 %>
-  <main>
+<main>
   <div class="wrap"><%= image_tag "mail_test.png" %>
     <div class="center-mode">
       <p>1</p>
@@ -98,15 +96,16 @@
       <div class="inner">
         <div class="category_list_title spnone"><li>カテゴリーから探す</li></div>
           <a href="http://localhost:3000/items/search">全ての商品</a>
-          <ul class="category_list">
-          <li><%= search_form_for Item.ransack(params[:q]), url: search_items_path do |f| %></li>
+          <div class="category_list">
+          <%= search_form_for Item.ransack(params[:q]), url: search_items_path do |f| %>
+            <div>
              <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}, {class:"category-box"}) %>
-            
+            </div>
             <%= f.submit '検索', class: "search-link" %>
 
           <% end %>
-          <li class="pcnone"><a href="">カテゴリーから探す&nbsp;＞</a></li>
-          </ul>
+          <div class="pcnone"><a href="">カテゴリーから探す&nbsp;＞</a></div>
+          </div>
       </div>
     </div>
   </section></div>
@@ -226,3 +225,21 @@
 
 </div>
 <%= render "shared/footer" %>
+
+
+<script>
+    $(function(){
+  var pos = 0;
+  var header = $('#hidden');
+  
+  $(window).on('scroll', function(){
+    if($(this).scrollTop() < pos ){
+      //上スクロール時の処理
+      header.removeClass('hide');
+    }else{
+      //下スクロール時の処理
+      header.addClass('hide');
+    }
+    pos = $(this).scrollTop();
+  });
+});</script>
