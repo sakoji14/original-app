@@ -1,104 +1,345 @@
-
-
-.search-main{
-  height: 15px;
-  width: 100%;
-  text-decoration: none;
+@charset "utf-8";
+@media screen and (max-width:767.98px) {
+  #contents_area {
+    background: none;
+  }
 }
-
-.items-text {
-  width: 300px;
-  margin: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/*====================
+検索結果に関して
+==================*/
+.search_result {
+  margin: 20px auto;
+  text-align: center;
 }
-
-.text-name {
-  color: blue;
-  font-size: 18px;
-}
-
-/* 商品一覧 */
-
-.contents-row {
-  width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.item-contents {
-  background-color: #FFF;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10vh 0;
-}
-
-.category-box {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.item-contents>.title {
-  font-size: 5vh;
-  line-height: 1.4;
-  font-weight: bold;
-}
-
-.item-contents>.subtitle {
-  font-size: 3vh;
-  margin: 1vh 0;
-  text-decoration: none;
-  color: red;
-  font-weight: bold;
-}
-
-.item-lists {
-  width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.item-lists>.list {
-  width: 37vh;
-  padding: 1vw;
-  background-color: #FFF;
-}
-/* 商品一覧 */
-
-.item-img-content {
+.search_result span {
   position: relative;
 }
-
-.item-img {
-  width: 33vh;
-  height: 33vh;
+.search_result span::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: center / contain url("../images/icon_box.png") no-repeat;
 }
-
-.item-info {
-  background-color: #FFF;
-  color: black;
-  padding: 1vw;
+.explan_title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
 }
-
-.item-name {
-  font-size: 2.5vh;
+@media screen and (min-width:768px) {
+  .search_result {
+    text-align: left;
+  }
+  .explan_title {
+    text-align: left;
+  }
 }
-
-.item-hit {
-  width: 800px;
+/*====================
+ここから検索リストに関して
+================*/
+#serach_itemArea {
+  background-color: #faf8eb;
+  padding: 20px 10px;
+  margin-top: 20px;
 }
-
-.item-price {
-  font-size: 3.0vh;
+.search_itemList {
   display: flex;
-  color: red;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
-
-.price {
-  padding-top: 10%;
+.search_itemList > li {
+  width: calc(50% - 5px);
+  margin-bottom: 20px;
+}
+.search_itemList > li:last-child, .search_itemList > li:nth-last-child(2):nth-child(odd) {
+  margin-bottom: 0px;
+}
+.itemlist_box {
+  background-color: #fff;
+  border-radius: 5px;
+}
+.item_title {
+  padding: 0 5px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin: 10px auto;
+  font-weight: bold;
+}
+.item_list_tag {
+  padding: 0 10px;
+}
+.item_list_tag > li {
+  display: inline-block;
+  padding: 2px 5px;
+  font-size: 12px;
+  background-color: #e7e7e7;
+  margin-bottom: 3px;
+  border-radius: 2px;
+  position: relative;
+}
+.item_list_tag > li::before {
+  content: "●";
+  color: #fff;
+  margin-right: 2px;
+}
+.item_list_prcie {
+  text-align: right;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: solid 1px #e7e7e7;
+}
+.item_list_sellerBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 10px 10px;
+}
+.seller_icon {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50vh;
+  margin-right: 5px;
+}
+.seller_info {
+  font-size: 14px;
+  font-weight: bold;
+  width: 70%;
+}
+.seller_info span {
+  font-size: 12px;
+  display: block;
+  font-weight: normal;
+}
+.flag_sold {
+  position: relative;
+  overflow: hidden;
+}
+.flag_sold::after {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 80px;
+  height: 40px;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: -6px;
+  left: -26px;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 1.8;
+  color: #fff;
+  background-color: #ccc;
+  content: "SOLD";
+}
+.flag_new {
+  position: relative;
+  overflow: hidden;
+}
+.flag_new::after {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 80px;
+  height: 40px;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: -6px;
+  left: -26px;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 1.8;
+  color: #fff;
+  background-color: #E92626;
+  content: "NEW";
+}
+@media screen and (min-width:768px) {
+  .search_itemList > li {
+    width: calc(25% - 10px);
+    margin-bottom: 20px;
+  }
+  /* ４列リストの一番左下にある要素以降にあるliすべて */
+  .search_itemList > li:nth-child(4n+1):nth-last-child(-n+4) ~ li {
+    background-color: skyblue;
+  }
+  .search_itemList > li:last-child, .search_itemList > li:nth-last-child(2):nth-child(odd) {
+    margin-bottom: 0px;
+  }
+}
+/*==============================
+オススメ
+===========================*/
+#search_recom {
+  margin-top: 30px;
+  background-color: #faf8eb;
+  padding: 20px 10px;
+}
+.recom_box {
+  background: #fff;
+  border-radius: 5px;
+  padding: 15px;
+}
+.recom_title {
+  position: relative;
+  border-radius: 50vh;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+.recom_title::after {
+  content: "";
+  width: 40px;
+  height: 3px;
+  background-color: #AD961D;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.recom_img {
+  overflow: hidden;
+  position: relative;
+  border-radius: 5px;
+}
+.recom_img::after {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 120px;
+  height: 60px;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: -16px;
+  left: -44px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 1.8;
+  color: #fff;
+  background-color: #E92626;
+  content: "オススメ";
+}
+.recom_text {
+  font-size: 14px;
+}
+.recom_btn {
+  text-align: center;
+  margin-top: 20px;
+  background-color: #AD961D;
+  padding: 10px;
+  color: #fff;
+  border-radius: 3px;
+  transition: 0.2s all ease;
+}
+.recom_btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+@media screen and (min-width:768px) {
+  #search_recom {
+    margin-top: 50px;
+    background-color: inherit;
+    padding: 0;
+  }
+  .recom_box {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  .recom_title {
+    position: relative;
+    border-radius: 50vh;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+    padding-bottom: 10px;
+  }
+  .recom_img {
+    float: left;
+    max-width: 250px;
+    margin-right: 20px;
+  }
+  .recom_text {
+    font-size: 16px;
+  }
+  .recom_btn {
+    margin-top: 30px;
+    color: #fff;
+    border-radius: 3px;
+    max-width: 100%;
+    margin-left: 270px;
+  }
+}
+/*===============================
+カテゴリーで探す
+======================*/
+.search_category_title {
+  font-weight: bold;
+  padding-bottom: 15px;
+  border-bottom: solid 1px #ccc;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+.category_tag {
+  padding: 0 10px 15px;
+  margin-bottom: 15px;
+  border-bottom: solid 1px #ccc;
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+.category_tag::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  background: center / contain url("../images/arrow_right.png") no-repeat;
+}
+.category_tag_icon {
+  margin-right: 10px;
+  position: relative;
+  width: 50px;
+}
+.category_tag_icon::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+.category_tag_icon img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  object-fit: cover;
+  border-radius: 50vh
+}
+@media screen and (min-width:768px) {
+  #search_category_bottom {
+    padding: 30px 0;
+  }
+  .search_category_title {
+    font-size: 20px;
+  }
 }

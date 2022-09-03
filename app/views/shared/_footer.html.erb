@@ -32,3 +32,19 @@
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+    $(function(){
+  var pos = 0;
+  var header = $('#hidden');
+  
+  $(window).on('scroll', function(){
+    if($(this).scrollTop() < pos ){
+      //上スクロール時の処理
+      header.removeClass('hide');
+    }else{
+      //下スクロール時の処理
+      header.addClass('hide');
+    }
+    pos = $(this).scrollTop();
+  });
+});</script> 
