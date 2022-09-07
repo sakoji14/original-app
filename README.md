@@ -34,6 +34,9 @@ Things you may want to cover:
 | password    | string     | null: false                    |   
 | tell        | string     | null: false                    |
 | nickname    | string     | null: false                    |
+| pref_id     | integer    |  null: false                   |
+| appeal      | text       |  null: false                    |
+
 
 - has_many :items
 

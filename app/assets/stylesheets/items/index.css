@@ -8,21 +8,7 @@ a {
 }
 
 /* 画面上部の「人生を変えるフリマアプリ」帯部分 */
-.title-contents {
-  width: 100vw;
-  height: 500px;
-  background-image: image-url('11111.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 5vh 15vw;
-  color: #fff;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
-}
+
 
 .service-title {
   font-size: 8vh;
@@ -259,8 +245,7 @@ a {
 }
 
 .item-img {
-  width: 33vh;
-  height: 33vh;
+
 }
 
 .sold-out {

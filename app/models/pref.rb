@@ -20,4 +20,6 @@ class Pref < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :addresses
+  has_many :owners
+
 end

@@ -1,27 +1,171 @@
-<%# 商品の概要 %>
-<div class="item-show">
-  <div class="item-box">
-    <h2 class="name">
-      <%= @item.item_name %>
-    </h2>
-    <div class="slider-for">
-      <p><%= image_tag @item.images[0]  %></p>
-    </div> 
-      <div class="slider-nav" >
-        <% @item.images[1..-1].each do |image| %>
-            <p><%= image_tag image %></p>
-        <%end%>
-      </div>        
-    <div class="item-price-box">
-      <span class="item-price">
-        ¥<%=  @item.fee %>
-      </span>
-      <span class="item-postage">
-        <%= @item.delivery_method.name %>
-      </span>
-    </div>
 
-    <%# if @item.purchase.blank? %>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta name="robots" content="noimageindex, nomediaindex" />
+<title>無題ドキュメント</title>
+<link href="../css/index.scss.css" rel="stylesheet" type="text/css">
+<link href="../css/header.css" rel="stylesheet" type="text/css">
+<link href="../css/reset.css" rel="stylesheet" type="text/css">
+<link href="../css/common.css" rel="stylesheet" type="text/css">
+<link href="../css/detail.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- 必要に応じてバージョンアップ -->
+<link rel="stylesheet" type="text/css" href="../slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css"/>
+</head>
+
+
+<body>
+<!---全ページ共通--->
+
+<%= render "shared/header" %>
+
+<!---ページ下部固定ボタン---> 
+<!---パンくずリスト--->
+<section id="bread_clumb">
+  <div class="wrap">
+    <div class="inner">
+      <div class="container">
+        <ol class="bc_list">
+          <li><%= link_to "うまいもん市場", root_path %></li>
+          <li><%= link_to @item.category.name, item_purchases_path(@item.id) %></li>
+          <li><%= @item.item_name %></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!---パンくずリスト--->
+<div class="pc_display">
+  <div class="pc_item"> 
+    <!----商品サムネイル---->
+    <section id="item_photo">
+      <div class="wrap">
+        <div class="inner">
+
+          <div class="slider-for">
+           <p><%= image_tag @item.images[0]  %></p>
+          </div>
+          <div class="slider-nav">
+            <% @item.images[1..-1].each do |image| %>
+              <p><%= image_tag image %></p>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!----商品サムネイル----> 
+  <!---商品説明---->
+  <div class="pc_item_info">
+    <section id="item_info">
+      <div class="wrap">
+        <div class="inner">
+          <h3 class="item_name"><%= @item.item_name %></h3>
+          <!--div class="review">★<a href="">4件のレビュー</a></div-->
+          <div class="price">¥<%=  @item.fee %><span class="tax"><%= @item.delivery_method.name %></span></div>
+          <p class="special_caution">※タイミングによって多少内容が異なる場合がございます。</p>
+          
+          <div class="famer_box">
+            <div class="famer_icon"></div>
+            <div class="famer_info"><span><%= @item.owner.pref.name %></span><%= @item.owner.corporation %></div>
+          </div>
+          <div class="points_box">
+            <div class="points_title"><span>ここがイチオシ！</span></div>
+            <ul class="points_list">
+             <%= @item.comment %>
+            </ul>
+          </div>
+          <div class="cv_box">
+            <ul class="cv_btn">
+              <li class="cv_cart"> <p><%=link_to "カートに入れる", item_add_to_carts_path(@item.id), method: :post %></p></li>
+              <li class="cv_order">
+                <% if user_signed_in? %>
+                  <%= link_to "購入画面に進む", item_purchases_path(@item.id) %>
+                <% end %>
+              </li>
+            </ul>
+              <div class="favorite_btn">
+              <% if current_user.favorite_find(@item.id) %>
+                <p><%=link_to "お気に入り解除", item_favorite_path(@item.id), method: :delete %></p>
+              <% else %>
+                <p><%=link_to "お気に入り登録", item_favorites_path(@item.id), method: :post %></p>
+              <% end %></div>
+          </div>
+          
+          <div class="delivery">
+            <div class="delivery_title">配送方法：ヤマト運輸</div>
+            <ul class="delivery_list">
+              <li>【東京都】まで&nbsp;<b>送料<span class="delivery_price">￥1,296～</span></b></li>
+            </ul>
+          </div>
+          <dl class="item_detail_list">
+            <div class="item_detail_box">
+              <dt>内容</dt>
+              <dd><%= @item.item_name %></dd>
+            </div>
+            
+            <div class="item_detail_box">
+              <dt>発送</dt>
+              <dd><%= @item.shipping_date.name %>
+                ※この商品はお届け日を指定できます。</dd>
+            </div>
+            <div class="item_detail_box">
+              <dt>カテゴリ</dt>
+              <dd><%= @item.category.name %></dd>
+            </div>
+            <div class="item_detail_box">
+              <dt>産地</dt>
+              <dd><%= @item.owner.pref.name %></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+    <!---商品説明----> 
+    <!---商品タグ>
+    <section id="tag_area">
+      <div class="wrap">
+        <div class="inner">
+          <ul class="tag_list">
+            <li><a href="">#自然栽培</a></li>
+            <li><a href="">#肉</a></li>
+            <li><a href="">#加工品</a></li>
+            <li><a href="">#期間限定</a></li>
+            <li><a href="">#お試しセット</a></li>
+            <li><a href="">#ビニール包装</a></li>
+          </ul>
+        </div>
+      </div>
+    </section--->
+  </div>
+  <!---商品タグ---> </div>
+<!---生産者について--->
+<section id="producer_area">
+     
+  <h3>
+    <div class="wrap">
+      <div class="inner">この商品の生産者 </div>
+    </div>
+  </h3>
+  <div class="wrap">
+    <div class="inner">
+      <div class="producer">
+        <div class="producer_icon"></div>
+        <div class="producer_info"><%= @item.owner.nickname %></div>
+      </div>
+      <div class="producer_text">
+        <%= @item.owner.appeal %>
+      </div>
+    </div>
+  </div>
+  
+</section>
+<!---生産者について---> 
       <% if owner_signed_in? %>        
         <% if  current_owner.id == @item.owner_id %>
           <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
@@ -29,64 +173,30 @@
           <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
         <% end %>
       <% end%>
-      <% if user_signed_in? %>
-        <%= link_to "購入画面に進む", item_purchases_path(@item.id),  class:"item-red-btn"%>
-      <% end %>
-    <%#end %>
 
-    <div class="item-explain-box">
-      <span><%= @item.comment %></span>
-    </div>
-    <table class="detail-table">
-      <tbody>
-        <tr>
-          <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.item_name %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @item.category.name %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @item.delivery_method.name %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @item.shipping_date.name %></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="option">
-      <% if current_user.favorite_find(@item.id) %>
-        <div class="report-btn">
-          <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
-          <p><%=link_to "お気に入り解除", item_favorite_path(@item.id), method: :delete %></p>
-        </div>
-      <% else %>
-        <div class="favorite-btn">
-          <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-          <p><%=link_to "お気に入り登録", item_favorites_path(@item.id), method: :post %></p>
-        </div>
-      <% end %>
-      <div class="count-btn">
-        <p><%=link_to "お気に入り一覧", item_favorites_path(@item.id) %></p>
-      </div>
-      <div class="report-btn">
-          <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
-          <p><%=link_to "カートに入れる", item_add_to_carts_path(@item.id), method: :post %></p>
-      </div>
-        
-    </div>
-  </div>
-  <%# /商品の概要 %>
+<script>
+    $(function(){
+  var pos = 0;
+  var header = $('#hidden');
+  
+  $(window).on('scroll', function(){
+    if($(this).scrollTop() < pos ){
+      //上スクロール時の処理
+      header.removeClass('hide');
+    }else{
+      //下スクロール時の処理
+      header.addClass('hide');
+    }
+    pos = $(this).scrollTop();
+  });
+});</script> 
 
-  <div class="comment-box">
-    
-  <%= link_to "ホームに戻る", root_path,  class:"another-item"%>
-  <p><%#=link_to "カートを確認する", carts_path(@item.id), class:"another-item" %></p>
-</div>
-
+<script type="text/javascript" src="../slick/slickScroll.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
+<script type="text/javascript" src="../slick/slick.min.js"></script>
+</body>
+</html>
 
 
 <%= render "shared/footer" %>

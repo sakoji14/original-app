@@ -47,12 +47,30 @@
     <%= f.text_field :tell, class: "form-phone", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
   </div>
 
+  <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">都道府県</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:pref_id, Pref.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+  </div>
+
+
+
   <div class="form-field">
     <div class='form-text-wrap'>
       <label class="form-text">ニックネーム</label>
       <span class="indispensable">※必須</span>
     </div>
     <%= f.text_field :nickname, id:"first-name", placeholder:"例) 陸太郎" %>
+  </div>
+
+  <div class="items-explain">
+        <div class="weight-bold-text">
+          出品者の説明
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :appeal, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
   </div>
 
   <div class="actions">

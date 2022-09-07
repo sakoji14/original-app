@@ -1,1 +1,97 @@
-<h1>news</h1>
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta name="robots" content="noimageindex, nomediaindex" />
+<title>無題ドキュメント</title>
+<link href="../css/index.scss.css" rel="stylesheet" type="text/css">
+<link href="../css/header.css" rel="stylesheet" type="text/css">
+<link href="../css/reset.css" rel="stylesheet" type="text/css">
+<link href="../css/common.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- 必要に応じてバージョンアップ -->
+<link rel="stylesheet" type="text/css" href="../slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css"/>
+<link href="../css/news.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!---全ページ共通--->
+
+<%= render "shared/header" %>
+
+<!---全ページ共通---> 
+
+<!---パンくずリスト--->
+<section id="bread_clumb">
+  <div class="wrap">
+    <div class="inner">
+      <div class="container">
+        <ol class="bc_list">
+          <li><a href="">うまいもん市場</a></li>
+          <li><a href="">お知らせ</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!---パンくずリスト--->
+<section id="news_area">
+  <div class="wrap">
+    <div class="inner">
+      <h3 class="news_title"><span>お知らせ</span></h3>
+      <ol class="news_list">
+        <li>
+          <div class="news_container">
+            <div class="news_img"><%= image_tag "mail_test.png" %></div>
+            <div class="news_index">
+              <div class="news_list_title">お知らせタイトル</div>
+              <div class="news_text">お知らせの内容を軽く紹介</div>
+              <div class="news_date">2022.08.25</div>
+            </div>
+          </div>
+        </li>
+          <li>
+          <div class="news_container">
+            <div class="news_img"><%= image_tag "mail_test.png" %></div>
+            <div class="news_index">
+              <div class="news_list_title">お知らせタイトル</div>
+              <div class="news_text">お知らせの内容を軽く紹介</div>
+              <div class="news_date">2022.08.25</div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+<!---全ページ共通--->
+
+<%= render "shared/footer" %>
+
+
+<script>
+    $(function(){
+  var pos = 0;
+  var header = $('#hidden');
+  
+  $(window).on('scroll', function(){
+    if($(this).scrollTop() < pos ){
+      //上スクロール時の処理
+      header.removeClass('hide');
+    }else{
+      //下スクロール時の処理
+      header.addClass('hide');
+    }
+    pos = $(this).scrollTop();
+  });
+});</script> 
+<script type="text/javascript" src="../slick/slickScroll.js"></script> 
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
+<script type="text/javascript" src="../slick/slick.min.js"></script>
+</body>
+</html>

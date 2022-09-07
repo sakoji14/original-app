@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 2022_07_14_132637) do
     t.string "corporation", null: false
     t.string "tell", null: false
     t.string "nickname", null: false
+    t.text "appeal", null: false
+    t.integer "pref_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

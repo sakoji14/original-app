@@ -171,7 +171,7 @@
   }
   /* ４列リストの一番左下にある要素以降にあるliすべて */
   .search_itemList > li:nth-child(4n+1):nth-last-child(-n+4) ~ li {
-    background-color: skyblue;
+  
   }
   .search_itemList > li:last-child, .search_itemList > li:nth-last-child(2):nth-child(odd) {
     margin-bottom: 0px;

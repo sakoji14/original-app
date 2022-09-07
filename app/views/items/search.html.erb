@@ -72,44 +72,10 @@
 </head>
 
 <body>
-<header>
-  <div class="wrap">
-    <div class="top_fix">
-      <div class="top_flex">
-        <h1 class="logo"><a href="#"><img src="../images/furima-logo-color.png" alt=""></a></h1>
-        <div class="sp_icon pcnone">
-          <div class="cart_icon"><img src="../images/icon_cart.png" alt="カート"></div>
-          <div class="hamburger-menu">
-            <input type="checkbox" id="menu-btn-check">
-            <label for="menu-btn-check" class="menu-btn"><span></span></label>
-            <!--ここからメニュー-->
-            <div class="menu-content">
-              <ul>
-                <li> <a href="#">メニューリンク1</a> </li>
-                <li> <a href="#">メニューリンク2</a> </li>
-                <li> <a href="#">メニューリンク3</a> </li>
-                <li> <a href="#">ログアウト</a> </li>
-              </ul>
-            </div>
-            <!--ここまでメニュー--> 
-          </div>
-        </div>
-      </div>
-      <form action="" method="get" class="p10">
-        <div class="search_form">
-          <input type="search" name="search" placeholder="商品名/出品者名">
-        </div>
-      </form>
-      <nav class="spnone">
-        <ul class="nav_list">
-          <li><img src="../images/icon_human.png" alt="">登録・ログイン</li>
-          <li><img src="../images/icon_beginner.png" alt="">うまいもん市場とは_</li>
-          <li><img src="../images/icon_cart.png" alt="">カート</li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
+
+<%= render "shared/header" %>
+
+
 <nav class="pcnone" id="hidden">
   <ul class="nav_list">
     <li><img src="../images/icon_human.png" alt="ログイン">
@@ -126,7 +92,7 @@
     <div class="inner">
       <div class="container">
         <ol class="bc_list">
-          <li><a href="">うまいもん市場</a></li>
+          <li><%= link_to "うまいもん市場", root_path %></li>
           <li><a href="">野菜</a></li>
         </ol>
       </div>
@@ -135,6 +101,8 @@
 </section>
 
 <!---パンくずリスト--->
+
+
 <div id="contents_area">
   <div class="left_box spnone">
     <section id="search_category">
@@ -144,32 +112,30 @@
             <h3>カテゴリーから探す</h3>
           </div>
           <ul class="category_list">
-            <li><a href="">野菜セット</a></li>
-            <li><a href="">野菜</a></li>
-            <li><a href="">果物</a></li>
-            <li><a href="">肉</a></li>
-            <li><a href="">卵・乳製品</a></li>
-            <li><a href="">はちみつ</a></li>
-            <li><a href="">魚介類</a></li>
-            <li><a href="">お酒</a></li>
-            <li><a href="">お茶</a></li>
-            <li><a href="">調味料</a></li>
-            <li><a href="">米・穀類</a></li>
-            <li><a href="">加工品</a></li>
-            <li><a href="">花・植物</a></li>
-            <li class="pcnone"><a href="">カテゴリーから探す&nbsp;＞</a></li>
+            <a href="http://localhost:3000/items/search">全ての商品</a>
+          <div class="category_list">
+          <%= search_form_for Item.ransack(params[:q]), url: search_items_path do |f| %>
+            <div>
+             <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}, {class:"category-box"}) %>
+            </div>
+            <%= f.submit '検索', class: "search-link" %>
+
+          <% end %>
+          <div class="pcnone"><a href="">カテゴリーから探す&nbsp;＞</a></div>
           </ul>
         </div>
       </div>
     </section>
   </div>
+
+ 
+  <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
   <div class="right_box">
     <section id="search_explan">
       <div class="wrap">
         <div class="inner">
-          <div class="search_result"><span>検索結果：〇件</span></div>
-          <div class="explan_title">とうもろこしの産地直送<br class="pcnone">
-            お取り寄せ商品一覧</div>
+          <div class="search_result"><span>検索結果：<%#= @item_count.count %>件</span></div>
+          <div class="explan_title">とうもろこしの産地直送<br class="pcnone"></div>
           <!--検索のタグによって商品名が変わるようにしたい--> 
         </div>
       </div>
@@ -177,403 +143,43 @@
     <section id="serach_itemArea">
       <div class="wrap">
         <div class="inner">
-          <ul class="search_itemList">
-            <li><a href="">
+
+          
+            <ul class="search_itemList">
+            <% @items.each do |item| %>
+            <li>
+            <%= link_to item_path(item.id) do %> 
               <div class="itemlist_box">
-                <div class="item_img"><img src="../images/11111.png" alt="商品画像"></div>
-                <div class="item_title">生鮮あしたば(茨城県産)　100グラムｘ2パック　農薬・化学肥料不使用　カルコン　明日葉</div>
+                <div class="item_img"><%= image_tag item.images[0], class: 'item-img' if item.images.attached? %></div>
+                <div class="item_title"><%= item.item_name %></div>
                 <ul class="item_list_tag">
-                  <li>農薬化学肥料不使用</li>
-                  <li>野菜</li>
-                  <li>あしたば</li>
+                  <span>カテゴリー（<%= item.category.name %>）</span>
                 </ul>
-                <div class="item_list_prcie">￥820</div>
+                <div class="item_list_prcie"><%= item.fee %>円</div>
                 <div class="item_list_sellerBox">
                   <div class="seller_icon"></div>
                   <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
                 </div>
               </div>
-              </a></li>
-            <li><a href="">
-              <div class="itemlist_box">
-                <div class="item_img"><img src="../images/11111.png" alt="商品画像"></div>
-                <div class="item_title">生鮮あしたば(茨城県産)　100グラムｘ2パック　農薬・化学肥料不使用　カルコン　明日葉</div>
-                <ul class="item_list_tag">
-                  <li>農薬化学肥料不使用</li>
-                  <li>野菜</li>
-                  <li>あしたば</li>
-                </ul>
-                <div class="item_list_prcie">￥820</div>
-                <div class="item_list_sellerBox">
-                  <div class="seller_icon"></div>
-                  <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
-                </div>
-              </div>
-              </a></li>
-            <li><a href="">
-              <div class="itemlist_box flag_sold">
-                <div class="item_img"><img src="../images/11111.png" alt="商品画像"></div>
-                <div class="item_title">生鮮あしたば(茨城県産)　100グラムｘ2パック　農薬・化学肥料不使用　カルコン　明日葉</div>
-                <ul class="item_list_tag">
-                  <li>農薬化学肥料不使用</li>
-                  <li>野菜</li>
-                  <li>あしたば</li>
-                </ul>
-                <div class="item_list_prcie">￥820</div>
-                <div class="item_list_sellerBox">
-                  <div class="seller_icon"></div>
-                  <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
-                </div>
-              </div>
-              </a></li>
-            <li><a href="">
-              <div class="itemlist_box flag_new">
-                <div class="item_img"><img src="../images/11111.png" alt="商品画像"></div>
-                <div class="item_title">生鮮あしたば(茨城県産)　100グラムｘ2パック　農薬・化学肥料不使用　カルコン　明日葉</div>
-                <ul class="item_list_tag">
-                  <li>農薬化学肥料不使用</li>
-                  <li>野菜</li>
-                  <li>あしたば</li>
-                </ul>
-                <div class="item_list_prcie">￥820</div>
-                <div class="item_list_sellerBox">
-                  <div class="seller_icon"></div>
-                  <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
-                </div>
-              </div>
-              </a></li>
-            <li><a href="">
-              <div class="itemlist_box flag_new">
-                <div class="item_img"><img src="../images/11111.png" alt="商品画像"></div>
-                <div class="item_title">生鮮あしたば(茨城県産)　100グラムｘ2パック　農薬・化学肥料不使用　カルコン　明日葉</div>
-                <ul class="item_list_tag">
-                  <li>農薬化学肥料不使用</li>
-                  <li>野菜</li>
-                  <li>あしたば</li>
-                </ul>
-                <div class="item_list_prcie">￥820</div>
-                <div class="item_list_sellerBox">
-                  <div class="seller_icon"></div>
-                  <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
-                </div>
-              </div>
-              </a></li>
-            <li><a href="">
-              <div class="itemlist_box flag_new">
-                <div class="item_img"><img src="../images/11111.png" alt="商品画像"></div>
-                <div class="item_title">生鮮あしたば(茨城県産)　100グラムｘ2パック　農薬・化学肥料不使用　カルコン　明日葉</div>
-                <ul class="item_list_tag">
-                  <li>農薬化学肥料不使用</li>
-                  <li>野菜</li>
-                  <li>あしたば</li>
-                </ul>
-                <div class="item_list_prcie">￥820</div>
-                <div class="item_list_sellerBox">
-                  <div class="seller_icon"></div>
-                  <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
-                </div>
-              </div>
-              </a></li>
-            <li><a href="">
-              <div class="itemlist_box flag_new">
-                <div class="item_img"><img src="../images/11111.png" alt="商品画像"></div>
-                <div class="item_title">生鮮あしたば(茨城県産)　100グラムｘ2パック　農薬・化学肥料不使用　カルコン　明日葉</div>
-                <ul class="item_list_tag">
-                  <li>農薬化学肥料不使用</li>
-                  <li>野菜</li>
-                  <li>あしたば</li>
-                </ul>
-                <div class="item_list_prcie">￥820</div>
-                <div class="item_list_sellerBox">
-                  <div class="seller_icon"></div>
-                  <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
-                </div>
-              </div>
-              </a></li>
-            <li><a href="">
-              <div class="itemlist_box flag_new">
-                <div class="item_img"><img src="../images/11111.png" alt="商品画像"></div>
-                <div class="item_title">生鮮あしたば(茨城県産)　100グラムｘ2パック　農薬・化学肥料不使用　カルコン　明日葉</div>
-                <ul class="item_list_tag">
-                  <li>農薬化学肥料不使用</li>
-                  <li>野菜</li>
-                  <li>あしたば</li>
-                </ul>
-                <div class="item_list_prcie">￥820</div>
-                <div class="item_list_sellerBox">
-                  <div class="seller_icon"></div>
-                  <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
-                </div>
-              </div>
-              </a></li>
-            <li><a href="">
-              <div class="itemlist_box flag_new">
-                <div class="item_img"><img src="../images/11111.png" alt="商品画像"></div>
-                <div class="item_title">生鮮あしたば(茨城県産)　100グラムｘ2パック　農薬・化学肥料不使用　カルコン　明日葉</div>
-                <ul class="item_list_tag">
-                  <li>農薬化学肥料不使用</li>
-                  <li>野菜</li>
-                  <li>あしたば</li>
-                </ul>
-                <div class="item_list_prcie">￥820</div>
-                <div class="item_list_sellerBox">
-                  <div class="seller_icon"></div>
-                  <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
-                </div>
-              </div>
-              </a></li>
-          </ul>
+            <% end %>
+            </li>
+            <% end %>
+            </ul>
         </div>
       </div>
     </section>
+
     <section id="search_recom">
-      <div class="wrap">
-        <div class="inner">
-          <div class="recom_box clear">
-            <div class="recom_title">「どの野菜にしようか迷っている」<br>
-              そんなあなたにオススメ♪ </div>
-            <div class="recom_img"><img src="../images/11111.png" alt="商品画像"></div>
-            <div class="recom_text">うまいもん市場があなたにオススメの農家さんを選びます！初回限定価格でお試しいただけます、</div>
-            <a href="">
-            <div class="recom_btn">詳しくみる</div>
-            </a></div>
-        </div>
-      </div>
+      
     </section>
-    <section id="search_category_bottom">
-      <div class="wrap">
-        <div class="inner">
-          <div class="search_category_title">カテゴリーで探す</div>
-          <div class="category_tag">
-            <div class="category_tag_icon"><img src="../images/11111.png" alt="カテゴリーアイコン"></div>
-            お肉</div>
-          <div class="category_tag">
-            <div class="category_tag_icon"><img src="../images/11111.png" alt="カテゴリーアイコン"></div>
-            果物</div>
-          <div class="category_tag">
-            <div class="category_tag_icon"><img src="../images/11111.png" alt="カテゴリーアイコン"></div>
-            野菜</div>
-          <div class="category_tag">
-            <div class="category_tag_icon"><img src="../images/11111.png" alt="カテゴリーアイコン"></div>
-            卵</div>
-          <div class="category_tag">
-            <div class="category_tag_icon"><img src="../images/11111.png" alt="カテゴリーアイコン"></div>
-            魚介類</div>
-          <div class="category_tag">
-            <div class="category_tag_icon"><img src="../images/11111.png" alt="カテゴリーアイコン"></div>
-            お酒</div>
-          <div class="category_tag">
-            <div class="category_tag_icon"><img src="../images/11111.png" alt="カテゴリーアイコン"></div>
-            お茶</div>
-        </div>
-      </div>
-    </section>
+    
   </div>
 </div>
-<footer>
-  <div class="wrap">
-    <div class="inner">
-      <div class="footer_sitemap">
-        <nav class="sitemap_container">
-          <h5 class="sitemap_title">注文したい</h5>
-          <ul class="sitemap_list">
-            <li><a href="">
-              <p>うまいもん市場とは？</p>
-              </a></li>
-            <li><a href="">
-              <p>うまいもん市場基準</p>
-              </a></li>
-            <li><a href="">
-              <p>ご利用ガイド</p>
-              </a></li>
-            <li><a href="">
-              <p>品質保証について</p>
-              </a></li>
-            <li><a href="">
-              <p>共同購入で注文</p>
-              </a></li>
-            <!--    <li><a href="">
-              <p>飲食店の方へ</p>
-              </a></li>
-            <li><a href="">
-              <p>法人の方へ</p>
-              </a></li>-->
-          </ul>
-        </nav>
-        <nav class="sitemap_container">
-          <h5 class="sitemap_title">うまいもん市場について</h5>
-          <ul class="sitemap_list">
-            <li><a href="">
-              <p>運営会社</p>
-              </a></li>
-            <li><a href="">
-              <p>よくあるご質問</p>
-              </a></li>
-            <li><a href="">
-              <p>お問い合わせ</p>
-              </a></li>
-            <li><a href="">
-              <p>利用規約</p>
-              </a></li>
-            <li><a href="">
-              <p>プライバシーポリシー</p>
-              </a></li>
-            <li><a href="">
-              <p>特定商取引法</p>
-              </a></li>
-          </ul>
-        </nav>
-      </div>
-      <!--  <div class="footer_pre">
-       <h5 class="sitemap_title">都道府県（産地）から探す</h5>
-        <ul class="pre_list">
-          <li><a href="">
-            <p>北海道</p>
-            </a></li>
-          <li><a href="">
-            <p>青森県</p>
-            </a></li>
-          <li><a href="">
-            <p>岩手県</p>
-            </a></li>
-          <li><a href="">
-            <p>宮城県</p>
-            </a></li>
-          <li><a href="">
-            <p>秋田県</p>
-            </a></li>
-          <li><a href="">
-            <p>山形県</p>
-            </a></li>
-          <li><a href="">
-            <p>福島県</p>
-            </a></li>
-          <li><a href="">
-            <p>茨城県</p>
-            </a></li>
-          <li><a href="">
-            <p>栃木県</p>
-            </a></li>
-          <li><a href="">
-            <p>群馬県</p>
-            </a></li>
-          <li><a href="">
-            <p>埼玉県</p>
-            </a></li>
-          <li><a href="">
-            <p>千葉県</p>
-            </a></li>
-          <li><a href="">
-            <p>東京都</p>
-            </a></li>
-          <li><a href="">
-            <p>神奈川県</p>
-            </a></li>
-          <li><a href="">
-            <p>新潟県</p>
-            </a></li>
-          <li><a href="">
-            <p>富山県</p>
-            </a></li>
-          <li><a href="">
-            <p>石川県</p>
-            </a></li>
-          <li><a href="">
-            <p>福井県</p>
-            </a></li>
-          <li><a href="">
-            <p>山梨県</p>
-            </a></li>
-          <li><a href="">
-            <p>長野県</p>
-            </a></li>
-          <li><a href="">
-            <p>岐阜県</p>
-            </a></li>
-          <li><a href="">
-            <p>静岡県</p>
-            </a></li>
-          <li><a href="">
-            <p>愛知県</p>
-            </a></li>
-          <li><a href="">
-            <p>三重県</p>
-            </a></li>
-          <li><a href="">
-            <p>滋賀県</p>
-            </a></li>
-          <li><a href="">
-            <p>京都府</p>
-            </a></li>
-          <li><a href="">
-            <p>大阪府</p>
-            </a></li>
-          <li><a href="">
-            <p>兵庫県</p>
-            </a></li>
-          <li><a href="">
-            <p>奈良県</p>
-            </a></li>
-          <li><a href="">
-            <p>和歌山県</p>
-            </a></li>
-          <li><a href="">
-            <p>鳥取県</p>
-            </a></li>
-          <li><a href="">
-            <p>島根県</p>
-            </a></li>
-          <li><a href="">
-            <p>岡山県</p>
-            </a></li>
-          <li><a href="">
-            <p>広島県</p>
-            </a></li>
-          <li><a href="">
-            <p>山口県</p>
-            </a></li>
-          <li><a href="">
-            <p>徳島県</p>
-            </a></li>
-          <li><a href="">
-            <p>香川県</p>
-            </a></li>
-          <li><a href="">
-            <p>愛媛県</p>
-            </a></li>
-          <li><a href="">
-            <p>高知県</p>
-            </a></li>
-          <li><a href="">
-            <p>福岡県</p>
-            </a></li>
-          <li><a href="">
-            <p>佐賀県</p>
-            </a></li>
-          <li><a href="">
-            <p>長崎県</p>
-            </a></li>
-          <li><a href="">
-            <p>熊本県</p>
-            </a></li>
-          <li><a href="">
-            <p>大分県</p>
-            </a></li>
-          <li><a href="">
-            <p>宮崎県</p>
-            </a></li>
-          <li><a href="">
-            <p>鹿児島県</p>
-            </a></li>
-          <li><a href="">
-            <p>沖縄県</p>
-            </a></li>
-        </ul>
-      </div>-->
-      <p class="copyright">&copy;うまいもん市場2022</p>
-    </div>
-  </div>
-</footer>
+<% end %> 
+
+<%= render "shared/footer" %>
+
+
 <script>
     $(function(){
   var pos = 0;

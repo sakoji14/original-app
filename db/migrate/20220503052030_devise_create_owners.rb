@@ -9,6 +9,8 @@ class DeviseCreateOwners < ActiveRecord::Migration[6.0]
       t.string :corporation,       null: false
       t.string :tell,              null: false
       t.string :nickname,          null: false
+      t.text    :appeal,             null: false
+      t.integer :pref_id, null: false
 
       ## Recoverable
       t.string   :reset_password_token

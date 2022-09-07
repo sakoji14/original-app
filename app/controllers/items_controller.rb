@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
+    @owner = Owner.all
   end
 
   def update

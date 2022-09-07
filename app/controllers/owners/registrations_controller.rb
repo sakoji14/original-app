@@ -3,7 +3,6 @@
 class Owners::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
   
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -66,7 +65,11 @@ class Owners::RegistrationsController < Devise::RegistrationsController
 
   private
 
+  def owner_parmas
+    params.require(:owner).permit(:corporation, :nickname, :tell, :pref_id, :appeal)
+  end
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:corporation, :nickname, :tell])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:corporation, :nickname, :tell, :pref_id, :appeal])
   end
 end

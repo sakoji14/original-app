@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :delivery_method
   belongs_to :shipping_date
+  
 
   belongs_to :owner
   has_one   :purchase
