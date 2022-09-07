@@ -860,7 +860,6 @@ category
     right: 2px;
     top: 50%;
     transform: translateY(-50%);
-    background: center / contain url("../images/arrow_right.png") no-repeat;
   }
   .category_list li:nth-child(1), .category_list li:nth-child(2), .category_list li:nth-child(3), .category_list li:nth-child(4), .category_list li:nth-child(5), .category_list li:nth-child(6), .category_list li:nth-child(7), .category_list li:nth-child(8), .category_list li:nth-child(9), .category_list li:nth-child(10), .category_list li:nth-child(11), .category_list li:nth-child(12), .category_list li:nth-child(13) {
     background: none;
