@@ -20,36 +20,7 @@
       <%= f.submit '検索', class: "search-link" %>
     </div>
     
-    <div class= "item-hit">
-      <div class='hit'>件がヒットしました</div>
-    <ul class="item-lists">
-      <br>
-      <% @items.each do |item| %>
-        <li class='list'>
-          <%= link_to item_path(item.id) do %> 
-            <div class='item-img-content'>
-              <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %>
-            </div>
-            <div class='item-info'>
-              <h3 class='item-name'>
-                <%= item.item_name %>
-              </h3>
-              <h3 class='item-comment'>
-                <%= item.comment %>
-              </h3>
-              <div class='item-price'>
-                <span><%= item.fee %>円</span>
-              </div>
-              <div class='item-category'>
-                <span>カテゴリー（<%= item.category.name %>）</span>
-              </div>
-            </div>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-    </div>
-  </div>
+    
 <% end %> 
 
 
@@ -58,16 +29,7 @@
 <%= render "shared/header" %>
 
 
-<nav class="pcnone" id="hidden">
-  <ul class="nav_list">
-    <li><img src="../images/icon_human.png" alt="ログイン">
-      <p>登録・ログイン</p>
-    </li>
-    <li><img src="../images/icon_beginner.png" alt="はじめて">
-      <p>うまいもん市場とは</p>
-    </li>
-  </ul>
-</nav>
+
 <!---パンくずリスト--->
 <section id="bread_clumb">
   <div class="wrap">
