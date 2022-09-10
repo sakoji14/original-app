@@ -52,7 +52,7 @@
           
           <div class="famer_box">
             <div class="famer_icon"></div>
-            <div class="famer_info"><span><%#= @item.owner.pref.name %></span><%= @item.owner.corporation %></div>
+            <div class="famer_info"><span><%= @item.owner.pref.name %></span><%= @item.owner.corporation %></div>
           </div>
           <div class="points_box">
             <div class="points_title"><span>ここがイチオシ！</span></div>
@@ -63,18 +63,21 @@
           <div class="cv_box">
             <ul class="cv_btn">
               <li class="cv_cart"> <p><%=link_to "カートに入れる", item_add_to_carts_path(@item.id), method: :post %></p></li>
-              <li class="cv_order">
                 <% if user_signed_in? %>
+                <li class="cv_order">
                   <%= link_to "購入画面に進む", item_purchases_path(@item.id) %>
+                </li>
                 <% end %>
-              </li>
             </ul>
+              <% if user_signed_in? %>
               <div class="favorite_btn">
-              <% if current_user.favorite_find(@item.id) %>
-                <p><%=link_to "お気に入り解除", item_favorite_path(@item.id), method: :delete %></p>
-              <% else %>
-                <p><%=link_to "お気に入り登録", item_favorites_path(@item.id), method: :post %></p>
-              <% end %></div>
+                <% if current_user.favorite_find(@item.id) %>
+                  <p><%=link_to "お気に入り解除", item_favorite_path(@item.id), method: :delete %></p>
+                <% else %>
+                  <p><%=link_to "お気に入り登録", item_favorites_path(@item.id), method: :post %></p>
+                <% end %>
+              <% end %>
+                </div>
           </div>
           
           <div class="delivery">
@@ -100,7 +103,7 @@
             </div>
             <div class="item_detail_box">
               <dt>産地</dt>
-              <dd><%#= @item.owner.pref.name %></dd>
+              <dd><%= @item.owner.pref.name %></dd>
             </div>
           </dl>
         </div>
@@ -139,7 +142,7 @@
         <div class="producer_info"><%= @item.owner.nickname %></div>
       </div>
       <div class="producer_text">
-        <%#= @item.owner.appeal %>
+        <%= @item.owner.appeal %>
       </div>
     </div>
   </div>

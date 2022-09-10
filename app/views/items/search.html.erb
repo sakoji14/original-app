@@ -93,18 +93,18 @@
           <div class="category_list_title spnone">
             <h3>カテゴリーから探す</h3>
           </div>
-          <ul class="category_list">
-            <a href="http://localhost:3000/items/search">全ての商品</a>
-          <div class="category_list">
           <%= search_form_for Item.ransack(params[:q]), url: search_items_path do |f| %>
-            <div>
-             <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}, {class:"category-box"}) %>
-            </div>
-            <%= f.submit '検索', class: "search-link" %>
-
-          <% end %>
-          <div class="pcnone"><a href="">カテゴリーから探す&nbsp;＞</a></div>
+          <ul class="category_list">
+            <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=1&commit">果物</a></li>
+            <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=2&commit">野菜</a></li>
+            <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=3&commit">魚</a></li>
+            <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=4&commit">魚介その他</a></li>
+            <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=5&commit">牛肉・豚肉・鶏肉</a></li>
+            <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=6&commit">肉加工品</a></li>
+            <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=3&commit">その他</a></li>
+            <li class="pcnone"><a href="">カテゴリーから探す&nbsp;＞</a></li>
           </ul>
+          <% end %>
         </div>
       </div>
     </section>
