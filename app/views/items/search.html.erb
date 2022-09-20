@@ -1,27 +1,4 @@
-<%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
-  <div class="search-main">
-    <div class="search-field">
-      <%= f.label :item_name, '商品名', class: "text-name" %>
-      <br>
-      <%= f.text_field :item_name, class:"items-text", placeholder: '商品名', value: params[:q]&.dig(:item_name) %>
-      <%= f.label :owner_nickname_cont, '出品者名', class: "text-name" %>
-      <br>
-      <%= f.text_field :owner_nickname_cont, class:"items-text", placeholder: '出品者名' %>
-      <%= f.label :category_id_in, 'カテゴリーを選ぶ', class: "text-name" %>
-      <br>
-      <%= f.collection_check_boxes(:category_id_in, Category.all, :id, :name, {include_blank: "---"}, {class:"category-box"}) %>
-      <br>
-      <%= f.label :fee_gteq, '価格', class:"price", class: "text-name" %>
-      <br>
-      <%= f.number_field :fee_gteq, class:"items-text" %> 円以上
-      <br>
-      <%= f.number_field :fee_lteq, class:"items-text" %> 円以下
-      <br>
-      <%= f.submit '検索', class: "search-link" %>
-    </div>
-    
-    
-<% end %> 
+
 
 
 
@@ -49,6 +26,7 @@
 
 <div id="contents_area">
   <div class="left_box spnone">
+
     <section id="search_category">
       <div class="wrap">
         <div class="inner">
@@ -63,13 +41,35 @@
             <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=4&commit">魚介その他</a></li>
             <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=5&commit">牛肉・豚肉・鶏肉</a></li>
             <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=6&commit">肉加工品</a></li>
-            <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=3&commit">その他</a></li>
+            <li><a href="/items/search?q%5Bcategory_id_in%5D%5B%5D=&q%5Bcategory_id_in%5D%5B%5D=7&commit">その他</a></li>
             <li class="pcnone"><a href="">カテゴリーから探す&nbsp;＞</a></li>
           </ul>
           <% end %>
         </div>
       </div>
     </section>
+    <section id="squeeze"> <div class="search-field">
+    <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
+  <div class="search-main">
+    <div class="search-field">
+      <%= f.label :item_name, '商品名', class: "text-name" %>
+      <br>
+      <%= f.text_field :item_name, class:"items-text", placeholder: '商品名', value: params[:q]&.dig(:item_name) %>
+      <%= f.label :owner_nickname_cont, '出品者名', class: "text-name" %>
+      <br>
+      <%= f.text_field :owner_nickname_cont, class:"items-text", placeholder: '出品者名' %>
+      <br>
+      <%= f.label :fee_gteq, '価格', class:"price", class: "text-name" %>
+      <br>
+      <%= f.number_field :fee_gteq, class:"items-text" %> 円以上
+      <br>
+      <%= f.number_field :fee_lteq, class:"items-text" %> 円以下
+      <br>
+      <%= f.submit '検索', class: "search-link" %>
+    </div>   
+  <% end %> 
+  </div>
+  </section>
   </div>
 
  
@@ -78,8 +78,8 @@
     <section id="search_explan">
       <div class="wrap">
         <div class="inner">
-          <div class="search_result"><span>検索結果：<%#= @item_count.count %>件</span></div>
-          <div class="explan_title">とうもろこしの産地直送<br class="pcnone"></div>
+          <div class="search_result"><span>検索結果：<%= @items.count %>件</span></div>
+          <!--div class="explan_title">とうもろこしの産地直送<br class="pcnone"></div-->
           <!--検索のタグによって商品名が変わるようにしたい--> 
         </div>
       </div>
@@ -101,8 +101,8 @@
                 </ul>
                 <div class="item_list_prcie"><%= item.fee %>円</div>
                 <div class="item_list_sellerBox">
-                  <div class="seller_icon"></div>
-                  <div class="seller_info"><span>茨城県行方市</span>北浦パッケージ</div>
+                  <div class="seller_icon"><%= image_tag item.owner.image %></div>
+                  <div class="seller_info"><span><%= item.owner.corporation %></span></div>
                 </div>
               </div>
             <% end %>

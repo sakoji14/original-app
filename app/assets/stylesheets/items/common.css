@@ -32,14 +32,13 @@ header {
   display: block;
   z-index: 10000;
 }
-.clear{
-    display: block;
+.clear {
+  display: block;
 }
-
-.clear::before,.clear::after{
-    clear: both;
-    display: block;
-    content: "";
+.clear::before, .clear::after {
+  clear: both;
+  display: block;
+  content: "";
 }
 .wrap {
   max-width: 1200px;
@@ -85,19 +84,15 @@ header {
   width: 100%;
   border-radius: 50vh;
   margin-top: 5px;
+  border: none;
 }
-input[type="search"] {
+input[type="text"] {
   border: none;
   width: 100%;
   border-radius: 50vh;
   background-color: #efefef;
   font-size: 14px;
-  padding: 8px;
-  padding-left: 2em;
-  /*-  background-image: url("../images/icon_search.png");
-  background-repeat: no-repeat;
-  background-size: 20px auto;
-  background-position: 10px center;-*/
+  padding: 10px 20px;
 }
 input::placeholder {
   color: #bbb;
@@ -143,16 +138,24 @@ input::placeholder {
     align-items: center;
   }
   .nav_list li {
-    width: calc(33% - 5px);
+    width: 60px;
     font-size: 10px;
     text-align: center;
     padding: 5px;
+    position: relative;
+    height: 75px;
   }
   .nav_list li img {
     max-width: 30px;
     display: block;
     text-align: center;
     margin: 0 auto 5px;
+  }
+  .nav_list li p {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
   }
   .nav_list li:nth-child(1) {
     background-color: #fcf5c7;
@@ -162,6 +165,9 @@ input::placeholder {
     color: #fff;
   }
   .nav_list li:nth-child(3) {
+    background-color: #fcf5c7;
+  }
+  .nav_list li:nth-child(4) {
     background-color: #eee;
   }
   .p10 {
@@ -197,15 +203,14 @@ input::placeholder {
 .bc_list li:last-child::before {
   content: none;
 }
-
-@media screen and (min-width:768px){
-    #bread_clumb{
-        margin-top: 10px;
-        padding: 10px;
-    }
-    .bc_list{
-        font-size: 14px;
-    }
+@media screen and (min-width:768px) {
+  #bread_clumb {
+    margin-top: 10px;
+    padding: 10px;
+  }
+  .bc_list {
+    font-size: 14px;
+  }
 }
 /*====================
 ハンバーガーメニュー
@@ -470,6 +475,7 @@ recom
   font-size: 16px;
   font-weight: bold;
   color: #4B442A;
+  margin-bottom: 10px;
 }
 .contents_title h3, .contents_title h4 {
   font-weight: bold;
@@ -595,10 +601,10 @@ recom
     background: #fff;
     padding: 0 20px;
     max-width: 1200px;
-      margin: 40px auto 0;
+    margin: 40px auto 0;
   }
   .right_box {
-    width: 75%;
+    width: 100%;
     padding: 0 30px;
   }
   .contents_title {
@@ -625,16 +631,16 @@ recom
     display: inline-block;
     padding: 0 20px;
   }
-    .contents_title h3::before{
-        content: "";
-        width: 60px;
-        height: 60px;
-        position: absolute;
-        top: -60px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: center / contain url("../images/icon_food.png") no-repeat;
-    }
+  .contents_title h3::before {
+    content: "";
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: center / contain url("../images/icon_food.png") no-repeat;
+  }
   #trend .contents_title {
     background: none;
   }
@@ -651,11 +657,10 @@ recom
     display: flex;
     flex-wrap: wrap;
     overflow-x: auto;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
   .contents_item_list > li {
-    max-width: calc(33% - 10px);
-    flex: 0 0 44%;
+    max-width: 32%;
     border-radius: 10px;
     background-color: #fff;
     margin: 0;
@@ -663,6 +668,11 @@ recom
     margin-bottom: 10px;
     background: #fff;
     padding: 5px;
+    border: solid 1px #eee;
+    margin-right: 10px;
+  }
+  .contents_item_list > li:nth-child(3n) {
+    margin-right: 0;
   }
   .contents_item_list > li > img {
     border-radius: 10px;
@@ -680,6 +690,16 @@ recom
     margin-bottom: 0px;
     font-weight: 700;
   }
+    .item-info{padding: 5px;}
+    .item-name{font-weight: bold;font-size: 18px;
+    }
+    .item-comment{display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;}
+    .item-img{width:100%;height:150px;object-fit:contain}
+    .item-img-content{min-height:160px;display:flex;align-items:center;}
+    .item-category{text-align: right;font-size: 14px;}
   .tag li {
     background-color: #eee;
     position: relative;
@@ -699,12 +719,12 @@ recom
   .contents_price {
     color: #E3272A;
     font-weight: 700;
-    display: flex;
-    align-items: center;
+    display: block;
     padding-bottom: 5px;
     margin-bottom: 5px;
     border-bottom: solid 1px #eee;
     margin-top: 5px;
+      text-align: right;
   }
   .contents_price span {
     font-size: 12px;
@@ -860,6 +880,7 @@ category
     right: 2px;
     top: 50%;
     transform: translateY(-50%);
+    background: center / contain url("../images/arrow_right.png") no-repeat;
   }
   .category_list li:nth-child(1), .category_list li:nth-child(2), .category_list li:nth-child(3), .category_list li:nth-child(4), .category_list li:nth-child(5), .category_list li:nth-child(6), .category_list li:nth-child(7), .category_list li:nth-child(8), .category_list li:nth-child(9), .category_list li:nth-child(10), .category_list li:nth-child(11), .category_list li:nth-child(12), .category_list li:nth-child(13) {
     background: none;
@@ -914,7 +935,7 @@ footer {
   .footer_sitemap {
     justify-content: center;
   }
-    .sitemap_container{
-        padding: 0 20px;
-    }
+  .sitemap_container {
+    padding: 0 20px;
+  }
 }

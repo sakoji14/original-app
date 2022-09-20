@@ -1,3 +1,9 @@
+
+<div class="wrap">
+  <div class="inner">
+  <div class="login_logo"><img src="../images/furima-logo-color.png" alt=""></div>
+    <div class="login_container">
+
 <h2>ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -29,4 +35,14 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="new_container">
+      <h3><span>初めてご利用ですか？</span></h3>
+      <a href="/users/sign_up">アカウント登録</a> </div>
+
+<%#= render "devise/shared/links" %>
+
+</div>
+</div>
+</div>
+
+

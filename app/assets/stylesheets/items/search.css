@@ -166,12 +166,11 @@
 }
 @media screen and (min-width:768px) {
   .search_itemList > li {
-    width: calc(25% - 10px);
+    width: calc(33% - 10px);
     margin-bottom: 20px;
   }
   /* ４列リストの一番左下にある要素以降にあるliすべて */
   .search_itemList > li:nth-child(4n+1):nth-last-child(-n+4) ~ li {
-  
   }
   .search_itemList > li:last-child, .search_itemList > li:nth-last-child(2):nth-child(odd) {
     margin-bottom: 0px;
@@ -311,6 +310,7 @@
   position: absolute;
   right: 15px;
   top: 20px;
+  background: center / contain url("../images/arrow_right.png") no-repeat;
 }
 .category_tag_icon {
   margin-right: 10px;
@@ -342,3 +342,31 @@
     font-size: 20px;
   }
 }
+
+@media screen and (min-width:768px){
+    #squeeze{
+            padding: 20px 10px;
+    background-color: #faf8eb;
+        margin-top: 20px;
+    }
+    #squeeze input[type="text"]{
+        background-color: #fff;
+        border:solid 1px #aaa;
+        border-radius: 0;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        
+    }
+    .items-text{
+        width: 100%;
+        height: 40px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+
+    }
+}
+
+.item_search{
+ width:100%;
+}
+  

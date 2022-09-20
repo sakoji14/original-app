@@ -39,6 +39,7 @@ class ItemsController < ApplicationController
 
   def show
     @owner = Owner.all
+    
   end
 
   def update
@@ -56,6 +57,7 @@ class ItemsController < ApplicationController
     end
     @q = Item.ransack(params[:q])
     @items = @q.result
+    
   end
   
   private

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'carts/show'
+  get 'carts/index'
+
   devise_for :owners, :controllers => {
     :registrations => 'owners/registrations',
     :sessions => 'owners/sessions'   
