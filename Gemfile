@@ -67,3 +67,7 @@ gem 'payjp'
 gem "aws-sdk-s3", require: false
 gem 'ancestry'
 gem 'ransack'
+
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
