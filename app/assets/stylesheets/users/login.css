@@ -46,6 +46,7 @@ background: linear-gradient(0deg, rgba(238,229,165,1) 0%, rgba(252,245,199,1) 10
     font-weight: bold;
     transition: 0.2s all ease;
     margin-bottom: 30px;
+    max-width:100%
 
 }
 input[type="checkbox"]:hover,input[type="submit"]:hover{
