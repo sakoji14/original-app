@@ -6,6 +6,8 @@ class ItemsController < ApplicationController
     @items = Item.all
    
     @all_ranks = Item.find(Favorite.group(:item_id).order('count(item_id) desc').limit(6).pluck(:item_id))
+    @q = Item.ransack(params[:q])
+    @item = @q.result
   end
 
   def new

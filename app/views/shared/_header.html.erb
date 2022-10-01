@@ -54,7 +54,11 @@
            
         </ul>
       </nav>
-      <nav class="pcnone" id="hidden">
+      
+    </div>
+  </div>
+</header>
+<nav class="pcnone" id="hidden">
         <ul class="nav_list">
           <% if user_signed_in? %>
             <li><%= image_tag "icon_human.png" %><%= link_to current_user.first_name, "#" %></li>
@@ -70,6 +74,3 @@
           <% end %>
         </ul>
       </nav>
-    </div>
-  </div>
-</header>

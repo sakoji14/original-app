@@ -795,44 +795,28 @@ category
   margin-bottom: 5px
 }
 .category_list li:nth-child(1) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
+  background: center / cover url("11112.jpg") no-repeat;
 }
 .category_list li:nth-child(2) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
+  background: center / cover url("11112.jpg") no-repeat;
 }
 .category_list li:nth-child(3) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
+  background: center / cover url("11112.jpg") no-repeat;
 }
 .category_list li:nth-child(4) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
+  background: center / cover url("11112.jpg") no-repeat;
 }
 .category_list li:nth-child(5) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
+  background: center / cover url("11112.jpg") no-repeat;
 }
 .category_list li:nth-child(6) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
+  background: center / cover url("11112.jpg") no-repeat;
 }
 .category_list li:nth-child(7) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
+  background: center / cover url("11112.jpg") no-repeat;
 }
-.category_list li:nth-child(8) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
-}
-.category_list li:nth-child(9) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
-}
-.category_list li:nth-child(10) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
-}
-.category_list li:nth-child(11) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
-}
-.category_list li:nth-child(12) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
-}
-.category_list li:nth-child(13) {
-  background: center / cover url("../images/11114.jpg") no-repeat;
-}
+
+
 .category_list li:last-child {
   color: #9f8745;
   font-size: 12px;
@@ -880,7 +864,7 @@ category
     right: 2px;
     top: 50%;
     transform: translateY(-50%);
-    background: center / contain url("../images/arrow_right.png") no-repeat;
+    background: center / contain url("arrow_right.png") no-repeat;
   }
   .category_list li:nth-child(1), .category_list li:nth-child(2), .category_list li:nth-child(3), .category_list li:nth-child(4), .category_list li:nth-child(5), .category_list li:nth-child(6), .category_list li:nth-child(7), .category_list li:nth-child(8), .category_list li:nth-child(9), .category_list li:nth-child(10), .category_list li:nth-child(11), .category_list li:nth-child(12), .category_list li:nth-child(13) {
     background: none;
