@@ -140,9 +140,9 @@
       <br>
       <%= f.label :fee_gteq, '価格', class:"price", class: "text-name" %>
       <br>
-      <%= f.number_field :fee_gteq, class:"items-text" %><p> 円以上</p>
+      <%= f.number_field :fee_gteq, class:"items-text", min:"100", step:"100" %><p> 円以上</p>
       <br>
-      <%= f.number_field :fee_lteq, class:"items-text" %><p>円以下</p>
+      <%= f.number_field :fee_lteq, class:"items-text", min:"100", step:"100" %><p>円以下</p>
       <br>
       <%= f.submit '検索', class: "search-link" %>
     </div>   
