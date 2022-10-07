@@ -639,7 +639,7 @@ recom
     top: -60px;
     left: 50%;
     transform: translateX(-50%);
-    background: center / contain url("../images/icon_food.png") no-repeat;
+    background: center / contain url("icon_food.png") no-repeat;
   }
   #trend .contents_title {
     background: none;
