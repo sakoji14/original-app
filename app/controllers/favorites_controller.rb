@@ -2,6 +2,7 @@ class FavoritesController < ApplicationController
 
   def index
     @items = Item.all
+    @owner = Owner.all
 
     favorites = Favorite.where(user_id: current_user.id).pluck(:item_id)
     @favorite_list = Item.find(favorites)

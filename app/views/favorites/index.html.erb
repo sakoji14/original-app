@@ -1,41 +1,43 @@
 <%= render "shared/header" %>
   
-  <div class= "item-hit">
-      <%= @favorite_list.count %>
-      <div class='hit'>
-        件がヒットしました
-      </div>
-    <ul class="item-lists">
-      <br>
+  
+
+  <section id="favorite_itemContainer">
+  <div class="wrap">
+    <h1 class="favorite_title">お気に入り一覧</h1>
+    <ul>
       <% if @favorite_list.present? %>
         <% @favorite_list.each do |item| %>
-
-          
-
-          <li class='list'>
+          <li class="item-lists">
             <%= link_to item_path(item.id) do %> 
-              <div class='item-img-content'>
-                <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %>
-              </div>
-              <div class='item-info'>
-                <h3 class='item-name'>
-                  <%= item.item_name %>
-                </h3>
-                <h3 class='item-comment'>
-                  <%= item.comment %>
-                </h3>
-                <div class='item-price'>
-                  <span><%= item.fee %>円</span>
-                </div>
-                <div class='item-category'>
-                  <span>カテゴリー（<%= item.category.name %>）</span>
-                </div>
-              </div>
-            <% end %>
-          </li>
-        <% end %>
-      <% end %>
+
+              <div class="list"> <a href="/items/4">
+                <div class="item-img-content"> <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %> </div>
+                <div class="item-info">
+                  <div class="item-left">
+                    <h3 class="item-name">  <%= item.item_name %> </h3>
+                    <h3 class="item-comment"> <%= item.comment %> </h3>
+                    <div class="item-price"> <%= item.fee %> <span>円</span> </div>
+                  </div>
+                  <div class="item-right"> 
+                    <span class="spnone">
+                      <div class="item-sellar">
+                        <div class="item-sellarImg"><%= image_tag item.owner.image %></div>
+                        <div class="item-sellarText"><%= item.owner.nickname %></div>
+                      </div>
+                    </span>
+                    <div class="item-category"> <span>カテゴリー（<%= item.category.name %>）</span></div>
+                    <a href="" class="btn_cart">カートに入れる</a> </div>
+                  </div>
+              </a></div>
+          <% end %>
+      </li>
+
+    <% end %>
+  <% end %>
+      
     </ul>
   </div>
+</section>
 
 <%= render "shared/footer" %>

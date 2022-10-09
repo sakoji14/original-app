@@ -9,6 +9,7 @@ class Owner < ApplicationRecord
 
   has_many :items
   has_one_attached :image
+  has_many :favorites
 
   validates :nickname, presence: true
   validates :appeal, presence: true
