@@ -1,41 +1,51 @@
 <%= render "shared/header" %>
 
-  <div class= "item-hit">
-      <%= @item.count %>
+  <section id="favorite_itemContainer">
+  <div class="wrap">
+    <h1 class="favorite_title">カート一覧</h1>
+    <%= @item.count %>
       <div class='hit'>
-        件がヒットしました
+        件
       </div>
       <div>
         <p class='text-right mt-3'>合計金額 <%= @item.sum(:fee) %>円</p>
       </div>
-    <ul class="item-lists">
-      <br>
+    <ul>
       <% if @item.present? %>
         <% @item.each do |item| %>
-          <li class='list'>
+          <li class="item-lists">
             <%= link_to item_path(item.id) do %> 
-              <div class='item-img-content'>
-                <%= image_tag item.images[0], class: 'item-img' %>
+
+              <div class="list">
+                <div class="item-img-content"> <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %> </div>
+                <div class="item-info">
+                  <div class="item-left">
+                    <h3 class="item-name">  <%= item.item_name %> </h3>
+                    <h3 class="item-comment"> <%= item.comment %> </h3>
+                    <div class="item-price"> <%= item.fee %> <span>円</span> </div>
+                  </div>
+                  <div class="item-right"> 
+                    <span class="spnone">
+                      <div class="item-sellar">
+                        <div class="item-sellarImg"><%= image_tag item.owner.image %></div>
+                        <div class="item-sellarText"><%= item.owner.nickname %></div>
+                      </div>
+                    </span>
+                    <div class="item-category"> <span>カテゴリー（<%= item.category.name %>）</span></div>
+                    <div class="btn_cart"><%= link_to "購入画面に進む", item_purchases_path(item.id) %></div>
+                    <%= link_to '×', item_delete_in_carts_path(item), method: :post, data: {confirm: '削除してもいいですか？'} %>
+                  </div>
               </div>
-              <div class='item-info'>
-                <h3 class='item-name'>
-                  <%= item.item_name %>
-                </h3>
-                <h3 class='item-comment'>
-                  <%= item.comment %>
-                </h3>
-                <div class='item-price'>
-                  <span><%= item.fee %>円<%= link_to '×', item_delete_in_carts_path(item), method: :post, data: {confirm: '削除してもいいですか？'} %></a></span>
-                </div>
-                <div class='item-category'>
-                  <span>カテゴリー（<%= item.category.name %>）</span>
-                </div>
-              </div>
-            <% end %>
-          </li>
-        <% end %>
-      <% end %>
+          <% end %>
+      </li>
+
+    <% end %>
+  <% end %>
+      
     </ul>
   </div>
+</section>
+
+
 
 <%= render "shared/footer" %>

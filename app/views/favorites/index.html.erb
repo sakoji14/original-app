@@ -11,7 +11,7 @@
           <li class="item-lists">
             <%= link_to item_path(item.id) do %> 
 
-              <div class="list"> <a href="/items/4">
+              <div class="list">
                 <div class="item-img-content"> <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %> </div>
                 <div class="item-info">
                   <div class="item-left">
@@ -27,9 +27,9 @@
                       </div>
                     </span>
                     <div class="item-category"> <span>カテゴリー（<%= item.category.name %>）</span></div>
-                    <a href="" class="btn_cart">カートに入れる</a> </div>
+                    <div class="btn_cart"><%=link_to "カートに入れる", item_add_to_carts_path(item.id), method: :post %> </div>
                   </div>
-              </a></div>
+              </div>
           <% end %>
       </li>
 
