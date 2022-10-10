@@ -7,24 +7,26 @@
   <div class="wrap">
     <div class="top_fix">
       <div class="top_flex">
-        <%= link_to image_tag("logo.png"), "/" %>
-        <div class="sp_icon pcnone">
-          <div class="cart_icon"><%= image_tag "icon_cart.png" %></div>
-          <div class="hamburger-menu">
-            <input type="checkbox" id="menu-btn-check">
-            <label for="menu-btn-check" class="menu-btn"><span></span></label>
-            <!--ここからメニュー-->
-            <div class="menu-content">
-              <ul>
-                <li> <a href="#">メニューリンク1</a> </li>
-                <li> <a href="#">メニューリンク2</a> </li>
-                <li> <a href="#">メニューリンク3</a> </li>
-                <li> <a href="#">ログアウト</a> </li>
-              </ul>
+        <h1 class="logo">
+          <%= link_to image_tag("logo.png"), "/" %>
+          <div class="sp_icon pcnone">
+            <div class="cart_icon"><%= image_tag "icon_cart.png" %></div>
+            <div class="hamburger-menu">
+              <input type="checkbox" id="menu-btn-check">
+              <label for="menu-btn-check" class="menu-btn"><span></span></label>
+              <!--ここからメニュー-->
+              <div class="menu-content">
+                <ul>
+                  <li> <a href="#">メニューリンク1</a> </li>
+                  <li> <a href="#">メニューリンク2</a> </li>
+                  <li> <a href="#">メニューリンク3</a> </li>
+                  <li> <a href="#">ログアウト</a> </li>
+                </ul>
+              </div>
+              <!--ここまでメニュー--> 
             </div>
-            <!--ここまでメニュー--> 
           </div>
-        </div>
+        </h1>
       </div>
        <%= search_form_for Item.ransack(params[:q]), url: search_items_path, html: {class: "p10"} do |f| %>
           <div class="p10">

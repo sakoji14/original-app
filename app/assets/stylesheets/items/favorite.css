@@ -10,7 +10,7 @@ h1.favorite_title {
   padding: 10px 0;
   color: #9f8745;
 }
-.item-lists {
+#favorite_itemContainer .item-lists {
   border-radius: 10px;
   border: solid 1px #ddd;
   overflow: hidden;
@@ -18,7 +18,7 @@ h1.favorite_title {
   margin-bottom: 20px;
   box-sizing: border-box;
 }
-.item-img-content {
+#favorite_itemContainer .item-img-content {
   background-color: #f5f5f5;
   padding: 10px;
   width: 35%;
@@ -29,35 +29,35 @@ h1.favorite_title {
   justify-content: center;
   box-sizing: border-box;
 }
-.item-info {
+#favorite_itemContainer .item-info {
   padding: 10px;
   padding-left: 37%;
 }
-h3.item-name {
+#favorite_itemContainer h3.item-name {
   font-weight: bold;
 }
-.item-comment {
+#favorite_itemContainer .item-comment {
   font-size: 13px;
   margin-bottom: 10px;
 }
-.item-price {
+#favorite_itemContainer .item-price {
   font-size: 20px;
   padding-bottom: 10px;
 }
-.item-price span {
+#favorite_itemContainer .item-price span {
   font-size: 16px;
 }
-.item-category {
+#favorite_itemContainer .item-category {
   text-align: right;
   font-size: 12px;
   margin-bottom: 10px;
 }
-.item-category span {
+#favorite_itemContainer .item-category span {
   background-color: #fcf5c7;
   padding: 2px 10px;
   border-radius: 5px;
 }
-.btn_cart {
+#favorite_itemContainer .btn_cart {
   background-color: #D51518;
   border-radius: 5px;
   color: #fff;
@@ -73,24 +73,24 @@ h3.item-name {
     max-width: 760px;
     margin-top: 20px;
   }
-  .item-img-content {
+#favorite_itemContainer .item-img-content {
     width: 25%;
     min-height: auto;
     padding: 20px;
   }
-  .item-info {
+ #favorite_itemContainer .item-info {
     display: flex;
     padding: 20px;
     padding-left: 27%;
     justify-content: space-between;
   }
-  .item-sellar {
+ #favorite_itemContainer .item-sellar {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 20px;
   }
-  .item-sellarImg {
+ #favorite_itemContainer .item-sellarImg {
     width: 60px;
     height: 60px;
     display: flex;
@@ -100,22 +100,22 @@ h3.item-name {
     border-radius: 50vh;
     margin-right: 10px;
   }
-  .item-sellarImg img {
+ #favorite_itemContainer .item-sellarImg img {
     object-fit: cover;
     width: 60px;
     height: 60px;
     border-radius: 50vh;
   }
-  .item-left {
+ #favorite_itemContainer .item-left {
     flex: 0 0 55%;
   }
-  .item-right {
+ #favorite_itemContainer .item-right {
     flex: 0 0 30%;
   }
-  .item-price {
+ #favorite_itemContainer .item-price {
     font-size: 22px;
   }
-  .item-category {
+ #favorite_itemContainer .item-category {
     margin-bottom: 20px;
   }
 }
