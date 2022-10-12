@@ -9,6 +9,7 @@
       <div class="top_flex">
         <h1 class="logo">
           <%= link_to image_tag("logo.png"), "/" %>
+        </h1>
           <div class="sp_icon pcnone">
             <div class="cart_icon"><%= image_tag "icon_cart.png" %></div>
             <div class="hamburger-menu">
@@ -26,7 +27,7 @@
               <!--ここまでメニュー--> 
             </div>
           </div>
-        </h1>
+        
       </div>
        <%= search_form_for Item.ransack(params[:q]), url: search_items_path, html: {class: "p10"} do |f| %>
           <div class="p10">
