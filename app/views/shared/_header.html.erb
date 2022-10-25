@@ -40,21 +40,21 @@
       <nav class="spnone">
         <ul class="nav_list">
           <% if user_signed_in? %>
-            <li><%= image_tag "icon_human.png" %><%= link_to current_user.first_name, edit_user_registration_path %></li>
-            <li><%= image_tag "icon_beginner.png" %><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to image_tag("icon_human.png"), edit_user_registration_path %><%= link_to current_user.first_name, edit_user_registration_path %></li>
+            <li><%= link_to image_tag("icon_beginner.png"), destroy_user_session_path, method: :delete %><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <li><%= image_tag "icon_human.png" %><%= link_to '新規登録', new_user_registration_path %></li>
-            <li><%= image_tag "icon_beginner.png" %><%= link_to 'ログイン', new_user_session_path %></li>
+            <li><%= link_to image_tag("icon_human.png"), new_user_registration_path %><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= link_to image_tag("icon_beginner.png"), new_user_session_path %><%= link_to 'ログイン', new_user_session_path %></li>
           <% end %>
           <% if user_signed_in? %>
-            <li><%= image_tag "star-on.png" %><%=link_to "お気に入り一覧", item_favorites_path(current_user) %></li>
+            <li><%= link_to image_tag("star-on.png"), item_favorites_path(current_user) %><%=link_to "お気に入り一覧", item_favorites_path(current_user) %></li>
           <% else %>
-            <li><%= image_tag "star-on.png" %><%=link_to "お気に入り一覧", root_path %></li>
+            <li><%= link_to image_tag("star-on.png"), root_path %><%=link_to "お気に入り一覧", root_path %></li>
           <% end %>
            <% if user_signed_in? %>
-           <li><%= image_tag "icon_cart.png" %><%=link_to "カートを確認する", carts_index_path %></li>
+           <li><%= link_to image_tag("icon_cart.png"), carts_index_path %><%=link_to "カートを確認する", carts_index_path %></li>
           <% else %>
-            <li><%= image_tag "icon_cart.png" %><%=link_to "カートを確認する", root_path %></li>
+            <li><%= link_to image_tag("icon_cart.png"), root_path %><%=link_to "カートを確認する", root_path %></li>
           <% end %>
            
         </ul>
@@ -66,16 +66,16 @@
 <nav class="pcnone" id="hidden">
         <ul class="nav_list">
           <% if user_signed_in? %>
-            <li><%= image_tag "icon_human.png" %><%= link_to current_user.first_name, edit_user_registration_path %></li>
-            <li><%= image_tag "icon_beginner.png" %><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to image_tag("icon_human.png"), edit_user_registration_path %><%= link_to current_user.first_name, edit_user_registration_path %></li>
+            <li><%= link_to image_tag("icon_beginner.png"), destroy_user_session_path, method: :delete %><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <li><%= image_tag "icon_human.png" %><%= link_to '新規登録', new_user_registration_path %></li>
-            <li><%= image_tag "icon_beginner.png" %><%= link_to 'ログイン', new_user_session_path %></li>
+            <li><%= link_to image_tag("icon_human.png"), new_user_registration_path %><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= link_to image_tag("icon_beginner.png"), new_user_session_path %><%= link_to 'ログイン', new_user_session_path %></li>
           <% end %>
           <% if user_signed_in? %>
-            <li><%= image_tag "icon_cart.png" %><%=link_to "お気に入り一覧", item_favorites_path(current_user) %></li>
+            <li><%= link_to image_tag("star-on.png"), item_favorites_path(current_user) %><%=link_to "お気に入り一覧", item_favorites_path(current_user) %></li>
           <% else %>
-            <li><%= image_tag "icon_cart.png" %><%=link_to "お気に入り一覧", root_path %></li>
+            <li><%= link_to image_tag("star-on.png"), root_path %><%=link_to "お気に入り一覧", root_path %></li>
           <% end %>
         </ul>
       </nav>

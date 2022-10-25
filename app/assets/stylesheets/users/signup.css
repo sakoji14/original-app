@@ -1,0 +1,79 @@
+@charset "utf-8";
+#sign_up {
+  background-color: #efefef;
+  padding: 10px;
+}
+#sign_up .wrap {
+  max-width: 720px;
+  background-color: #fff;
+  padding: 20px 10px;
+  box-shadow: 0 0 3px 0 rgb(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+#sign_up h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #9f8745;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.form-field {
+  margin-bottom: 25px;
+}
+.form-text-wrap {
+  margin-bottom: 10px;
+}
+.indispensable {
+  background-color: #DD3538;
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+.form_textArea {
+  border-radius: 5px !important;
+  margin-bottom: 10px !important;
+  background-color: #fff !important;
+  border: solid 1px #555 !important;
+  width: 100%;
+  padding: 10px;
+}
+.input-birth-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.input-birth-wrap select {
+  padding: 0 5px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+.input-birth-wrap select:first-child {
+  margin-left: 0;
+}
+input[type="submit"] {
+  width: 300px;
+  margin: 20px auto;
+  text-align: center;
+  display: block;
+  height: 50px;
+  background: #eee5a5;
+  background: linear-gradient(0deg, #eee5a5 0%, #fcf5c7 100%);
+  border-radius: 5px;
+  border: solid 1px #9c7509;
+  font-weight: bold;
+  transition: 0.2s all ease;
+}
+.home_link {
+  text-align: center;
+  margin: 30px auto;
+}
+.home_link a {
+  padding: 0 20px;
+  transition: 0.2s all ease;
+  cursor: pointer;
+}
+.home_link a:hover {
+  text-decoration: underline;
+  color: #9f8745;
+}

@@ -1,18 +1,23 @@
-<h2>新規登録</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="form-field">
-    <div class='form-text-wrap'>
-      <label class="form-text">お名前(全角)</label>
-      <span class="indispensable">必須</span>
-    </div>
-      <%= f.text_area :second_name, class:"input-name", id:"last-name", placeholder:"例) 山田" %>
-      <%= f.text_area :first_name, class:"input-name", id:"first-name", placeholder:"例) 陸太郎" %>
-  </div>
 
-  <div class="form-field">
+<section id="sign_up">
+  <div class="wrap">
+    <div class="inner">
+      <h2>新規登録</h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post">
+        <input type="hidden" name="authenticity_token" value="cCv+Jk/eAZyrLKlMgx638GM6l96CcdaA5k0nHWycdZCbT5Tvu1u/cwe67MZn0KAxmaoWYyOqTQiCamORFf8Aqw==" />
+        <div class="form-field">
+          <div class="form-text-wrap">
+            <label class="form-text">お名前(全角)</label>
+            <span class="indispensable">必須</span> </div>
+            <%= f.text_area :second_name, class:"input-name", id:"last-name", placeholder:"例) 山田" %>
+            <%= f.text_area :first_name, class:"input-name", id:"first-name", placeholder:"例) 陸太郎" %>
+        </div>
+        <div class="form-field">
     <div class='form-text-wrap'>
       <label class="form-text">生年月日</label>
       <span class="indispensable">必須</span>
@@ -31,38 +36,35 @@
                   "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
     </div>
   </div>
-  
-  <div class="form-field">
-    <div class='form-text-wrap'>
-      <label class="form-text">メールアドレス</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="form-field">
+          <div class="form-text-wrap">
+            <label class="form-text">メールアドレス</label>
+            <span class="indispensable">必須</span> </div>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="form-field">
+          <div class="form-text-wrap">
+            <label class="form-text">パスワード</label>
+            <span class="indispensable">必須</span> <em>(6 文字以上)</em> <br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
 
-  <div class="form-field">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード　※６文字以上で半角英数両方を使用して設定してください。</label>
-      <span class="indispensable">必須</span>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上)</em>
-      <% end %><br />
-    </div>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        </div>
+        <div class="field">
+          <div class="form-text-wrap">
+            <label class="form-text">パスワード確認</label>
+            <span class="indispensable">必須</span> </div>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "ログイン" %>
+        </div>
+      </form>
+ </div>
+  </div><div class="home_link"> <%= link_to "ホームに戻る", root_path %></div>
+  <% end %>
+</section>
 
-  <div class="field">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード確認</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-  <%= link_to "ホームに戻る", root_path %>
-<% end %>
 
 <%= render "users/shared/links" %>
