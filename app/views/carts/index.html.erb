@@ -1,51 +1,51 @@
 <%= render "shared/header" %>
 
-  <section id="favorite_itemContainer">
-  <div class="wrap">
-    <h1 class="favorite_title">カート一覧</h1>
-    <%= @item.count %>
-      <div class='hit'>
-        件
-      </div>
+  
       <div>
-        <p class='text-right mt-3'>合計金額 <%= @item.sum(:fee) %>円</p>
+        <p class='text-right mt-3'> <%#= @item.sum(:fee) %></p>
       </div>
-    <ul>
+    
+     
+
+<section id="cart_itemContainer">
+  <div class="wrap">
+    <div class="inner">
+      <h1 class="favorite_title">カートの中の商品<%= @item.count %></h1>
+      <p class="cart_caution"><b>生産者ごとに注文手続きが必要です。</b><br>
+        あわせ買い対象の商品以外は1点ごとに送料が発生します。<br>
+        注文画面にて必ず送料をご確認ください。</p>
+      <ul>
       <% if @item.present? %>
-        <% @item.each do |item| %>
-          <li class="item-lists">
-            <%= link_to item_path(item.id) do %> 
-
-              <div class="list">
-                <div class="item-img-content"> <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %> </div>
-                <div class="item-info">
-                  <div class="item-left">
-                    <h3 class="item-name">  <%= item.item_name %> </h3>
-                    <h3 class="item-comment"> <%= item.comment %> </h3>
-                    <div class="item-price"> <%= item.fee %> <span>円</span> </div>
+            <% @item.each do |item| %>
+              <%= link_to item_path(item.id) do %> 
+              <li class="item-lists">
+                <div class="cart_sellerName">
+                  <p><%= item.owner.nickname %></p>
+                </div>
+            
+                <div class="list">
+                  <div class="item-img-content"> <%= image_tag item.images[0], class: 'item-img' if item.images.attached? %>  </div>
+                  <div class="item-info">
+                    <div class="item-left">
+                      <h3 class="item-name"> <%= item.item_name %> </h3>
+                      <h3 class="item-comment"> <%= item.comment %> </h3>
+                      <div class="item-price"> <%= item.fee %> <span>円</span> </div>
+                    </div>
+                    <p align="right"> <%= link_to '削除', item_delete_in_carts_path(item),class: "delete", method: :post, data: {confirm: '削除してもいいですか？'} %></p>
                   </div>
-                  <div class="item-right"> 
-                    <span class="spnone">
-                      <div class="item-sellar">
-                        <div class="item-sellarImg"><%= image_tag item.owner.image %></div>
-                        <div class="item-sellarText"><%= item.owner.nickname %></div>
-                      </div>
-                    </span>
-                    <div class="item-category"> <span>カテゴリー（<%= item.category.name %>）</span></div>
-                    <div class="btn_cart"><%= link_to "購入画面に進む", item_purchases_path(item.id) %></div>
-                    <%= link_to '×', item_delete_in_carts_path(item), method: :post, data: {confirm: '削除してもいいですか？'} %>
-                  </div>
-              </div>
+                </div>
+                <p>※商品個数は注文画面で選択してください。<br>
+                  ※送料につきましては、注文画面にてご確認ください。</p>
+                <%= link_to "購入画面に進む", item_purchases_path(item.id), class: "btn_cart" %> </li>
+              
+                
           <% end %>
-      </li>
-
-    <% end %>
-  <% end %>
-      
-    </ul>
+      <% end %>
+      <% end %>
+      </ul>
+    </div>
   </div>
 </section>
-
 
 
 <%= render "shared/footer" %>
