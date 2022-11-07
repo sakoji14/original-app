@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>OriginalApp</title>
+    <meta charset="utf-8">
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="zA/zxPJkW0b+7MH/RiTW34TsiB9KeXON2ReO/Zlujt/Je/3h4kFvXRztF6XdFHSof7aS+jFSleWlXjydvF0+NQ==" />
+<script type="text/javascript" src="https://js.pay.jp/v1/"></script>
+<link rel="stylesheet" media="all" href="/assets/application-1ab38fcdef826bc8cdd4decbd14d7f62b051a4f9a59cd053f8851f615355f86b.css" data-turbolinks-track="reload" />
+<script src="/packs/js/application-53fa2348c9c247bb19ef.js" data-turbolinks-track="reload"></script>
+<link rel="stylesheet" href="../css/common.css" type="text/css">
+<link href="../css/thanks.css" rel="stylesheet" type="text/css">
+<link href="../css/reset.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<section id="thanks">
+  <div class="wrap">
+    <div class="inner">
+        <h1>ご注文<br class="pcnone">ありがとうございます</h1>
+      <div class="thanksImg"><img src="icon_food2.png" alt="アイコン"> </div>
+     <p>ご登録のメールアドレスに確認のメールをお送りいたしました。</p>
+        <p>生産者よりご注文の商品が届くまで今しばらくお待ちください。</p>
+        <p>その他、何かご不明な点がございましたらお問い合わせください。</p>
+        <ul class="thanks_link"><li><%= link_to "続けて注文する", carts_index_path %></li>
+        <li><%= link_to "ホームに戻る", root_path %></li>
+        <li><%= link_to "問い合わせる", news_index_path %></li></ul>
+ </div>
+  </div>
+    
+</section>
+    
+    
+</body>
+</html>

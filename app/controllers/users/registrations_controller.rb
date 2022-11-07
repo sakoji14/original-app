@@ -4,19 +4,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def create
-    @user = User.new(user_params)
-    if @user.save
       super
       WelcomeMailer.with(user: @user).welcome_email.deliver_later
-    else
-      render :new
-    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:birthday, :first_name, :second_name)
+    params.require(:user).permit(:birthday, :first_name, :second_name, :email, :password, :password_confirmation)
   end
 
   def configure_permitted_parameters
