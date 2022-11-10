@@ -76,3 +76,7 @@ gem 'net-pop'
 gem 'net-smtp'
 
 gem 'dotenv-rails'
+
+group :production do
+  gem 'pg'
+end
