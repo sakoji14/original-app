@@ -9,7 +9,6 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    
     favorites = current_user.favorites.build(item_id: params[:item_id])
     if favorites.save
      redirect_back(fallback_location: root_path)

@@ -69,6 +69,8 @@ class Owners::RegistrationsController < Devise::RegistrationsController
     params.require(:owner).permit(:corporation, :nickname, :tell, :pref_id, :appeal, :image)
   end
 
+  
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:corporation, :nickname, :tell, :pref_id, :appeal, :image])
   end
