@@ -11,7 +11,9 @@
       <div class="container">
         <ol class="bc_list">
           <li><%= link_to "うまいもん市場", root_path %></li>
-          <li><%= link_to @item.category.name, item_purchases_path(@item.id) %></li>
+    
+          <li><%= link_to @item.category.name, "#" %></li>
+
           <li><%= @item.item_name %></li>
         </ol>
       </div>

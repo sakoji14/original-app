@@ -4,8 +4,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def create
-      super
+    super
+    if @user.save
       WelcomeMailer.with(user: @user).welcome_email.deliver_later
+      #redirect_to root_path
+    end
   end
 
   private
