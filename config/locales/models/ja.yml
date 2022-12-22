@@ -8,3 +8,12 @@ ja:
         email: 有効なアドレス
         first_name: 姓
         second_name: 名
+  activemodel:
+    attributes:
+      purchase_address:
+          city: 市区町村
+          post_number: 郵便番号
+          token: クレジット情報
+          mail: 番地
+          tell: 電話番号
+          pref_id: 都道府県
