@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @owner = Owner.all
+    @item = Item.find(params[:id])
   end
 
   def update

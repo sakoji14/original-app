@@ -56,7 +56,7 @@
           
           <div class="famer_box">
             <div class="famer_icon"><%= image_tag @item.owner.image %></div>
-            <div class="famer_info"><span><%= @item.owner.pref.name %></span><%= @item.owner.corporation %></div>
+            <div class="famer_info"><span><%= @item.owner.pref.name %></span><%= link_to @item.owner.corporation, owner_path(@item.owner) %></div>
           </div>
           <div class="points_box">
             <div class="points_title"><span>ここがイチオシ！</span></div>
@@ -85,7 +85,7 @@
                 </div>
           </div>
           <div class="link_efforts_box">
-            <div class="efforts_icon"><%= image_tag "mail_test.png" %></div>
+            <div class="efforts_icon"><%= image_tag "main_visual.jpg" %></div>
             <div class="efforts_text"><span>うまいもん市場安心への取組み</span><%=link_to "規約", rule_index_path %></div>
           </div>
           
@@ -147,8 +147,8 @@
   <div class="wrap">
     <div class="inner">
       <div class="producer">
-        <div class="producer_icon"><%= image_tag @item.owner.image %></div>
-        <div class="producer_info"><%= @item.owner.nickname %></div>
+          <div class="producer_icon"><%= image_tag @item.owner.image %></div>
+          <div class="producer_info"><%= link_to @item.owner.nickname, owner_path(@item.owner) %></div>
       </div>
       <div class="producer_text">
         <%= @item.owner.appeal %>

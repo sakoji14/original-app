@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :news, only: [:index]
   resources :delivery, only: [:index]
   resources :carts, only: [:index]
+  resources :owners, only: [:show]
 
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
