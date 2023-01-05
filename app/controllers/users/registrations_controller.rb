@@ -3,11 +3,17 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def create
+  def new
     super
+    @user = User.new
+   end
+
+  def create
+    #super
+    @user = User.new(user_params)
     if @user.save
       WelcomeMailer.with(user: @user).welcome_email.deliver_later
-      #redirect_to root_path
+      render :thanks
     end
   end
 
